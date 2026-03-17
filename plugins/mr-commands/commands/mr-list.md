@@ -18,6 +18,14 @@ User may specify: `/mr-list [--all]`
 
 List open Merge Requests for the current GitLab project.
 
+### Step 0: Load environment variables
+
+```bash
+source ~/.zshrc 2>/dev/null || source ~/.bash_profile 2>/dev/null
+```
+
+Ensure `GITLAB_TOKEN` and `GITLAB_HOST` are set.
+
 ### Step 1: Get project info
 
 ```bash
