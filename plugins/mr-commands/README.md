@@ -26,10 +26,10 @@ GitLab Merge Request 工作流命令集合。
 ```
 📋 group/project - Open MR List (3)
 
-| # | Title | Author | Branch | Updated | Pipeline |
-|---|-------|--------|--------|---------|----------|
-| #42 | feat: add login | zhangsan | feat/login → dev | 2026-03-12 | ✅ |
-| #41 | fix: order calc | lisi | fix/order → dev | 2026-03-11 | ❌ |
+| # | Title | Author | Branch | Updated |
+|---|-------|--------|--------|---------|
+| #42 | feat: add login | zhangsan | feat/login → dev | 2026-03-12 |
+| #41 | fix: order calc | lisi | fix/order → dev | 2026-03-11 |
 ```
 
 ## 扩展命令（规划中）
@@ -49,20 +49,13 @@ GitLab Merge Request 工作流命令集合。
 /plugin install mr-commands@team-plugins
 ```
 
-## 配置
-
-在 `~/.config/git-agent/.env` 中配置：
-
-```bash
-GITLAB_TOKEN=glpat-xxxxxxxxxx
-GITLAB_HOST=gitlab.company.com
-```
-
 ## Troubleshooting
 
-### 401 Unauthorized
-- Token 过期或无效
-- Token 缺少 `api` 权限
+### glab: command not found
+运行 `brew install glab` 安装
+
+### glab auth error
+运行 `glab auth login` 重新认证
 
 ### No MRs shown
 - 检查是否有 open 状态的 MR

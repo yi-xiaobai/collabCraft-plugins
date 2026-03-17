@@ -62,15 +62,6 @@ Undo the last commit while preserving changes.
 /plugin install commit-commands@team-plugins
 ```
 
-## Configuration
-
-For `/commit-push-mr`, set environment variables in `~/.config/git-agent/.env`:
-
-```bash
-GITLAB_TOKEN=glpat-xxxxxxxxxx
-GITLAB_HOST=gitlab.company.com
-```
-
 ## Best Practices
 
 ### Using /commit
@@ -121,14 +112,13 @@ GITLAB_HOST=gitlab.company.com
 
 ### /commit-push-mr fails to create MR
 
-- Check GITLAB_TOKEN is valid and has `api` permission
-- Check GITLAB_HOST is correct
-- Ensure branch is pushed to remote
+- 运行 `glab auth login` 重新认证
+- 确保分支已推送到远程
 
 ## Requirements
 
 - Git 2.x+
-- GitLab Personal Access Token (for /commit-push-mr)
+- glab CLI (for /commit-push-mr)
 
 ## Author
 
