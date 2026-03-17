@@ -1,0 +1,7 @@
+{
+  "name": "commit-commands",
+  "description": "Streamline your git workflow with commands for committing, pushing, and creating merge requests",
+  "author": {
+    "name": "Your Team"
+  }
+}

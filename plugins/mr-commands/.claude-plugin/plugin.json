@@ -1,0 +1,7 @@
+{
+  "name": "mr-commands",
+  "description": "GitLab Merge Request workflow: list, create, view, merge",
+  "author": {
+    "name": "Your Team"
+  }
+}

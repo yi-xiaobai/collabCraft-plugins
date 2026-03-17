@@ -1,0 +1,24 @@
+{
+  "name": "team-plugins",
+  "description": "团队 Git 工作流插件集合",
+  "owner": {
+    "name": "Your Team"
+  },
+  "plugins": [
+    {
+      "name": "branch-commands",
+      "source": "./plugins/branch-commands",
+      "description": "Git 分支工作流：create, switch, delete"
+    },
+    {
+      "name": "commit-commands",
+      "source": "./plugins/commit-commands",
+      "description": "Git 提交工作流：commit, push, undo"
+    },
+    {
+      "name": "mr-commands",
+      "source": "./plugins/mr-commands",
+      "description": "GitLab MR 工作流：list, create, view, merge"
+    }
+  ]
+}

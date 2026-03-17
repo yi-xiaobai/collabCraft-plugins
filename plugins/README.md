@@ -1,0 +1,65 @@
+# Team Plugins
+
+团队级 Git 工作流插件，通过 Marketplace 统一分发。
+
+## 插件列表
+
+| 插件 | 命令 | 说明 |
+|------|------|------|
+| **branch-commands** | `/branch-create`, `/branch-switch`, `/branch-delete` | Git 分支工作流 |
+| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr`, `/commit-undo` | Git 提交工作流 |
+| **mr-commands** | `/mr-list` | GitLab MR 工作流 |
+
+> **个人效率工具**（Skills，非插件）：
+> - `/log`, `/generate-week` → work-log skill
+> - `/build` → turtle-build skill
+> - `/trending` → github-trending skill
+
+## 目录结构
+
+```
+plugins/
+├── branch-commands/
+│   ├── .claude-plugin/plugin.json
+│   ├── commands/
+│   │   ├── branch-create.md
+│   │   ├── branch-switch.md
+│   │   └── branch-delete.md
+│   └── README.md
+├── commit-commands/
+│   ├── .claude-plugin/plugin.json
+│   ├── commands/
+│   │   ├── commit.md
+│   │   ├── commit-push.md
+│   │   ├── commit-push-mr.md
+│   │   └── commit-undo.md
+│   └── README.md
+└── mr-commands/
+    ├── .claude-plugin/plugin.json
+    ├── commands/mr-list.md
+    └── README.md
+```
+
+## Plugin vs Skill
+
+| 类型 | 用途 | 示例 |
+|------|------|------|
+| **Plugin** | 团队共享、标准化工作流 | branch-commands, commit-commands |
+| **Skill** | 个人效率、本地配置 | work-log, turtle-build, github-trending |
+
+## 命令文件格式
+
+```markdown
+---
+allowed-tools: Bash(git add:*), Bash(git commit:*)
+description: Short description
+---
+
+## Context
+
+- Current status: !`git status`
+
+## Your task
+
+Instructions for Claude...
+```
