@@ -29,6 +29,12 @@ Based on the above changes:
    - Note: `--yes` skips interactive confirmation prompts
 4. Report the MR URL on success
 
+## Error Handling
+
+- **任何步骤失败都必须立即终止流程，不要继续执行后续步骤**
+- **禁止使用 `--no-verify`、`--force` 等绕过检查的参数**
+- 向用户报告失败原因，不要尝试自动修复或绕过
+
 You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
 
 ## Configuration
