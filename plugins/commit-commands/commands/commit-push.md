@@ -28,4 +28,10 @@ Based on the above changes, commit and push to remote.
 
 4. Push to remote origin
 
+## Error Handling
+
+- **任何步骤失败都必须立即终止流程，不要继续执行后续步骤**
+- **禁止使用 `--no-verify`、`--force` 等绕过检查的参数**
+- 向用户报告失败原因，不要尝试自动修复或绕过
+
 You have the capability to call multiple tools in a single response. Stage, commit, and push in a single message. Do not use any other tools or do anything else. Do not send any other text or messages besides these tool calls.
