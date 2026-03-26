@@ -32,9 +32,11 @@ Based on the above changes:
 
 ## Error Handling
 
-- **任何步骤失败都必须立即终止流程，不要继续执行后续步骤**
 - **禁止使用 `--no-verify`、`--force` 等绕过检查的参数**
-- 向用户报告失败原因，不要尝试自动修复或绕过
+- 如果 pre-commit 检查失败：
+  - **样式问题**（如 lint、格式化错误）：pre-commit 会自动修复，重新 stage 修改后的文件并再次提交即可
+  - **逻辑问题**（如分支命名不规范、代码逻辑错误）：立即终止流程，向用户报告失败原因
+- 其他步骤失败（如 push、mr create）：立即终止流程，向用户报告失败原因
 
 You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
 
