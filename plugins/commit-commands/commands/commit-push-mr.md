@@ -24,10 +24,9 @@ Based on the above changes:
 2. Push the branch to origin
 3. Create a GitLab Merge Request using `glab mr create` with:
    - Target branch: user specified or `dev`
-   - Title: 使用 commit message 第一行作为 title，需用单引号包裹避免特殊字符解析问题
    - Assignee: 使用 `--assignee @me` 将 MR 指派给当前提交人
-   - 命令格式: `glab mr create --target-branch <branch> --title '<commit_title>' --assignee @me --remove-source-branch --squash-before-merge --yes`
-   - **重要**: title 必须用单引号 `'...'` 包裹，不要用双引号
+   - 使用 `--fill` 自动从最近的 commit 获取 title 和 description
+   - 命令格式: `glab mr create --target-branch <branch> --fill --assignee @me --remove-source-branch --squash-before-merge --yes`
 4. Report the MR URL on success
 
 ## Error Handling
