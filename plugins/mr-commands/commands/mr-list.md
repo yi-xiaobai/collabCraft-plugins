@@ -12,9 +12,11 @@ User may specify: `/mr-list [--all]`
 
 ## Your task
 
-1. If `--all`: run `glab mr list --state opened`
-2. Otherwise: run `glab mr list --state opened --author=@me`
+1. If `--all`: run `glab mr list`
+2. Otherwise: run `glab mr list --author=@me`
 3. Format output as markdown table with: MR number, title, author (--all only), branch, updated date
+
+Note: glab 默认只显示 open 状态的 MR，无需指定 `--state` 参数
 
 You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
 
