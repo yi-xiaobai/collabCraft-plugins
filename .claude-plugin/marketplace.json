@@ -19,6 +19,11 @@
       "name": "mr-commands",
       "source": "./plugins/mr-commands",
       "description": "GitLab MR 工作流：list, create, view, merge"
+    },
+    {
+      "name": "deploy-commands",
+      "source": "./plugins/deploy-commands",
+      "description": "通用构建发布工作流：build, publish, release"
     }
   ]
 }

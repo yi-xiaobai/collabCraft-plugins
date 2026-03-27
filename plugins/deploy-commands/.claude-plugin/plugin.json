@@ -1,0 +1,19 @@
+{
+  "name": "deploy-commands",
+  "version": "1.0.0",
+  "description": "通用构建发布工作流",
+  "commands": [
+    {
+      "name": "build",
+      "source": "../commands/build.md"
+    },
+    {
+      "name": "publish",
+      "source": "../commands/publish.md"
+    },
+    {
+      "name": "release",
+      "source": "../commands/release.md"
+    }
+  ]
+}

@@ -9,11 +9,11 @@
 | **branch-commands** | `/branch-create`, `/branch-switch`, `/branch-delete` | Git 分支工作流 |
 | **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr`, `/commit-undo` | Git 提交工作流 |
 | **mr-commands** | `/mr-list` | GitLab MR 工作流 |
+| **deploy-commands** | `/build`, `/publish`, `/release` | 通用构建发布 |
 | **plugin-linter** | `/plugin-lint` | 插件规范检查 |
 
 > **个人效率工具**（Skills）：
 > - `/log` → work-log skill
-> - `/build` → turtle-build skill
 > - `/trending` → github-trending skill
 
 ## 快速开始
@@ -51,7 +51,7 @@ glab auth login
 ### 2. 安装插件
 
 ```bash
-/plugin install branch-commands commit-commands mr-commands plugin-linter@team-plugins
+/plugin install branch-commands commit-commands mr-commands deploy-commands plugin-linter@team-plugins
 ```
 
 ### 3. 使用
@@ -71,6 +71,11 @@ glab auth login
 # MR 管理
 /mr-list                         # 查看我的 MR
 /mr-list --all                   # 查看所有 MR
+
+# 构建发布
+/build                           # 构建当前项目
+/publish patch                   # 发布 patch 版本
+/release minor                   # 完整发布流程
 
 # 插件开发
 /plugin-lint                     # 检查所有插件规范
@@ -99,6 +104,13 @@ team-plugins/
 │   │   └── README.md
 │   ├── mr-commands/
 │   │   ├── commands/mr-list.md
+│   │   └── README.md
+│   ├── deploy-commands/
+│   │   ├── .claude-plugin/plugin.json
+│   │   ├── commands/
+│   │   │   ├── build.md
+│   │   │   ├── publish.md
+│   │   │   └── release.md
 │   │   └── README.md
 │   └── plugin-linter/
 │       ├── commands/plugin-lint.md
