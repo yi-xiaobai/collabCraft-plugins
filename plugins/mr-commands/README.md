@@ -4,6 +4,48 @@ GitLab Merge Request 工作流命令集合。
 
 ## 命令列表
 
+### /mr-title
+
+```bash
+/mr-title [target-branch]
+```
+
+根据当前分支的 git commits 生成 MR title 和 description。
+
+| 参数 | 说明 |
+|------|------|
+| `target-branch` | 目标分支（默认 `dev`） |
+
+示例：
+```bash
+/mr-title           # 对比 dev 分支
+/mr-title main      # 对比 main 分支
+```
+
+输出示例：
+```
+📝 MR Title
+
+feat(auth): add OAuth2 login support
+
+📄 MR Description
+
+## 变更概述
+实现 OAuth2 登录功能，支持 GitHub 和 Google 账号登录。
+
+## 主要变更
+- **feat**: 添加 OAuth2 认证模块
+- **feat**: 集成 GitHub/Google 登录按钮
+
+## 提交记录
+| Commit | Message |
+|--------|---------|
+| a1b2c3d | feat(auth): add OAuth2 provider config |
+| e4f5g6h | feat(auth): implement login callback |
+```
+
+---
+
 ### /mr-list
 
 ```bash
@@ -42,6 +84,8 @@ GitLab Merge Request 工作流命令集合。
 | `/mr-approve` | 批准 MR | ⭐ |
 | `/mr-comment` | 添加评论 | ⭐ |
 | `/mr-pipeline` | 查看 Pipeline 状态 | ⭐ |
+
+> 💡 **Tip**: 使用 `/mr-title` 生成 title 和 description 后，可以直接用于 `/mr-create`
 
 ## 安装
 
