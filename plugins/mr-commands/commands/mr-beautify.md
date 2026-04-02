@@ -1,11 +1,11 @@
 ---
 allowed-tools: Bash(git log:*), Bash(git branch:*), Bash(git merge-base:*), Bash(glab mr update:*), Bash(glab mr list:*)
-description: Generate MR title and description based on git commits, then update remote MR
+description: Beautify MR — auto-generate title & description from commits and update remote MR
 ---
 
 ## Parameters
 
-User may specify: `/mr-title [target-branch]`
+User may specify: `/mr-beautify [target-branch]`
 - Default: `dev`
 
 ## Context
