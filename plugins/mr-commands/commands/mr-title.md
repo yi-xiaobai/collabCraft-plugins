@@ -20,8 +20,8 @@ Based on the above commits, generate MR title and description, then update remot
 1. Analyze commits to determine primary change type (feat > fix > refactor > chore)
 2. Generate title: `{type}: {中文概述}`
 3. Generate description: 每个 commit 提炼为一条简洁的中文变更点
-   - **忽略**: revert 类型的 commit 及其对应的原 commit
-4. Find MR for current branch: `glab mr list --source-branch={current-branch}`
+   - **忽略**: revert commit 以及被 revert 的原 commit（成对剔除，不计入变更点）
+4. Find MR for current branch: `glab mr list --author=@me` 然后从结果中匹配当前分支
 5. Update MR: `glab mr update {mr-id} --title "{title}" --description "{description}"`
 
 ## Output format
