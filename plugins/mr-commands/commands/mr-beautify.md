@@ -12,7 +12,7 @@ Defaults: target-branch=dev
 ## Context
 
 - Current branch: !`git branch --show-current`
-- Commits to merge: !`git log origin/dev..HEAD --oneline --no-merges 2>/dev/null || git log dev..HEAD --oneline --no-merges`
+- Commits to merge: !`git log origin/$1..HEAD --oneline --no-merges 2>/dev/null || git log $1..HEAD --oneline --no-merges`
 
 ## Your task
 
