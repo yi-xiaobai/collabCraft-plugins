@@ -1,29 +1,20 @@
-# plugin-linter
+# Plugin Linter
 
-检查 Claude Code 插件是否符合官方规范。
+Checks Claude Code plugins for compliance with official spec.
 
-## 命令
+## Commands
 
-| 命令 | 描述 |
-|------|------|
-| `/plugin-lint` | 检查所有插件文件的规范合规性 |
-| `/plugin-lint path/to/file.md` | 检查单个插件文件 |
+| Command | Description |
+|---------|-------------|
+| `/plugin-lint` | Check all plugin files |
+| `/plugin-lint path/to/file.md` | Check a single file |
 
-## 检查项
+## Checks
 
-1. **YAML Front Matter**
-   - `allowed-tools` 必须精确指定命令模式
-   - `description` 必须存在且简洁
+- **YAML Front Matter**: `allowed-tools` must specify exact command patterns; `description` must be present and concise
+- **Structure**: must have `## Context` and `## Your task` sections
+- **Your task**: no hardcoded scripts; describes *what* not *how*; must include a single-response instruction
 
-2. **结构**
-   - 必须有 `## Context` 部分
-   - 必须有 `## Your task` 部分
+## Reference
 
-3. **Your task 部分**
-   - 不应包含硬编码脚本
-   - 描述"做什么"而非"怎么做"
-   - 必须有单次响应指令
-
-## 参考
-
-官方规范：https://github.com/anthropics/claude-plugins-official
+[Official spec](https://github.com/anthropics/claude-plugins-official)
