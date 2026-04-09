@@ -18,7 +18,7 @@ scripts/lint-plugins.sh     # Plugin lint script
 
 Each plugin: `.claude-plugin/plugin.json` + `commands/*.md` + `README.md`.
 
-Run `bash scripts/lint-plugins.sh` after any change — must pass.
+Run `bash scripts/lint-plugins.sh` after commit or push — must pass.
 
 `allowed-tools` use exact patterns like `Bash(git:*)`, never generic `Bash`.
 
