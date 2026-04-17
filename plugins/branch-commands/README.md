@@ -1,6 +1,6 @@
 # Branch Commands
 
-Git branch workflow commands: create, switch, and delete branches.
+Git branch workflow commands: create, switch, merge, and delete branches.
 
 ## Commands
 
@@ -35,6 +35,26 @@ Fuzzy-search and switch branches.
 /branch-switch           # list recent branches
 /branch-switch login     # match branches containing "login"
 /branch-switch 3         # switch to 3rd in list
+```
+
+### /branch-merge
+
+```bash
+/branch-merge <source_branch> [--no-ff] [--squash]
+```
+
+Merge a branch into current branch with auto-update and conflict resolution.
+
+| Param | Description | Default |
+|-------|-------------|---------|
+| `source_branch` | Branch to merge | required |
+| `--no-ff` | Force merge commit | off |
+| `--squash` | Squash commits | off |
+
+```bash
+/branch-merge feat-login     # merge feat-login into current
+/branch-merge dev --no-ff    # merge dev with merge commit
+/branch-merge feat --squash  # squash merge
 ```
 
 ### /branch-delete
