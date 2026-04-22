@@ -12,6 +12,31 @@ GitLab Merge Request workflow commands.
 
 Generates an MR title and description from git commits, then updates the remote MR. Default target: `dev`.
 
+### /mr-update
+
+```bash
+/mr-update [flags]
+```
+
+Update MR metadata without touching title/description.
+
+| Flag | Description |
+|------|-------------|
+| `--target <branch>` | Change target branch |
+| `--assignee <user>` | Set assignee (`@me` for self) |
+| `--reviewer <user>` | Set reviewers (comma-separated) |
+| `--label <labels>` | Add labels |
+| `--unlabel <labels>` | Remove labels |
+| `--draft` / `--ready` | Toggle draft status |
+| `--milestone <name>` | Set milestone |
+
+```bash
+/mr-update --target main
+/mr-update --assignee @me --label urgent
+/mr-update --draft
+/mr-update --target dev --unlabel wip --ready
+```
+
 ### /mr-list
 
 ```bash
