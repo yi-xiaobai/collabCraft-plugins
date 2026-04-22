@@ -1,29 +1,72 @@
 ---
-allowed-tools: Bash(git log:*), Bash(git branch:*), Bash(glab mr update:*), Bash(glab mr view:*)
+allowed-tools: Bash(git fetch:*), Bash(git log:*), Bash(git branch:*), Bash(glab mr update:*), Bash(glab mr view:*), Bash(glab api:*)
 description: Generate MR title and description based on git commits, then update remote MR
 ---
 
 ## Context
 
 - Current branch: !`git branch --show-current`
-- MR info: !`glab mr view --output json 2>/dev/null | head -50`
+- MR info: !`glab mr view --output json 2>/dev/null | head -80`
 
 ## Your task
 
-Generate MR title and description based ONLY on the "Commits to merge" shown above, then update remote MR.
+Generate MR title and description based ONLY on the **actual commits in this MR** (from GitLab API, not from stale local refs), then update remote MR after user confirmation.
 
-1. From MR info above, get the `target_branch`
-2. Get commits: `git log --oneline --no-merges --first-parent origin/{target_branch}..HEAD`
-3. Analyze commits to determine primary change type (feat > fix > refactor > chore)
-4. Generate title using Conventional Commits format: `{type}: {summary}`
-   - Summarize the overall change intent, do NOT copy commit messages verbatim
-5. Generate description: extract each commit into a concise change point
-   - **Ignore**: revert commits and their original commits (exclude pairs)
-6. Use `glab mr update` to update title and description
+### Step 1: Get authoritative commit list
+
+**DO NOT trust local `origin/{target_branch}` without fetching** — stale refs cause phantom commits from other MRs to leak into the list.
+
+1. From MR info above, extract `target_branch` and `iid` (MR number)
+2. Fetch the MR's real commit list from GitLab (source of truth):
+   ```
+   glab api "projects/:fullpath/merge_requests/{iid}/commits"
+   ```
+3. Cross-check with a fresh local diff:
+   ```
+   git fetch origin {target_branch}
+   git log --oneline --no-merges --first-parent origin/{target_branch}..HEAD
+   ```
+4. If the two lists differ, **trust the glab API result** and warn the user.
+
+### Step 2: Analyze commits
+
+- Determine primary change type (feat > fix > refactor > chore)
+- **Ignore**: revert commits and their original commits (exclude pairs)
+- Count effective commits after exclusions → call this `N`
+
+### Step 3: Generate content
+
+- **Title**: Conventional Commits format `{type}(scope): {summary}`
+  - Summarize overall intent, do NOT copy commit messages verbatim
+- **Description**: a bullet list of change points
+  - **HARD CONSTRAINT**: number of bullets MUST be `≤ N`
+  - Prefer grouping related commits into one bullet over splitting one into many
+  - Each bullet must map to a real commit — do NOT invent features not in the commit list
+
+### Step 4: Update MR and report
+
+Call `glab mr update` directly with the generated title and description, then print a summary:
+
+```
+📋 MR commits (from GitLab API): N commits
+  1. <hash> <message>
+  2. <hash> <message>
+  ...
+
+📝 Title:
+  <title>
+
+📝 Description:
+  - <bullet 1>
+  - <bullet 2>
+
+✅ MR updated
+```
 
 ## Error Handling
 
-- **No commits**: no new commits relative to target branch
+- **No commits**: no new commits relative to target branch → abort
 - **No MR found**: suggest creating MR first
+- **glab api fails**: fall back to `git log` but warn user that result may be inaccurate
 
 You MUST do all of the above in a single message.
