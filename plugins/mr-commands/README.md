@@ -15,27 +15,26 @@ Generates an MR title and description from git commits, then updates the remote 
 ### /mr-update
 
 ```bash
-/mr-update [flags]
+/mr-update [request]
 ```
 
-Update MR metadata without touching title/description.
+Update MR metadata (target branch, assignee, reviewer, labels, draft, milestone). Title/description are handled by `/mr-beautify`.
 
-| Flag | Description |
-|------|-------------|
-| `--target <branch>` | Change target branch |
-| `--assignee <user>` | Set assignee (`@me` for self) |
-| `--reviewer <user>` | Set reviewers (comma-separated) |
-| `--label <labels>` | Add labels |
-| `--unlabel <labels>` | Remove labels |
-| `--draft` / `--ready` | Toggle draft status |
-| `--milestone <name>` | Set milestone |
+**Interactive** — run with no argument to see current state and a menu:
 
 ```bash
-/mr-update --target main
-/mr-update --assignee @me --label urgent
-/mr-update --draft
-/mr-update --target dev --unlabel wip --ready
+/mr-update
 ```
+
+**Natural language** — just say what you want:
+
+```bash
+/mr-update 改成 main 分支
+/mr-update 指派给我，加 urgent 标签
+/mr-update mark ready
+```
+
+**Explicit flags** (power users): `--target`, `--assignee`, `--reviewer`, `--label`, `--unlabel`, `--draft`, `--ready`, `--milestone`.
 
 ### /mr-list
 

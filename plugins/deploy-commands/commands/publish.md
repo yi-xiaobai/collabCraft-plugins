@@ -12,11 +12,33 @@ description: Publish package to npm registry
 
 ## Parameters
 
-`/publish [patch|minor|major] [--tag=<tag>]`
+`/publish [request]`
 
-Defaults: version-type=patch
+`request` can be:
+- **Empty** → interactive mode: show current version and ask which bump + tag
+- **Natural language** → e.g. `/publish 升个中版本`、`/publish major beta`
+- **Explicit args** (power users): `[patch|minor|major] [--tag=<tag>]`
+
+Defaults: `version-type=patch`, no dist-tag
 
 ## Your task
+
+### Step 0: Determine inputs
+
+- **No argument** → prompt:
+  ```
+  Current version: <version>
+
+  Version bump?
+    [1] patch  (x.y.Z)
+    [2] minor  (x.Y.0)
+    [3] major  (X.0.0)
+
+  npm dist-tag? (blank = latest, e.g. beta / next)
+  ```
+  Wait for reply.
+- **Natural language** → infer bump type + tag.
+- **Explicit args** → use directly.
 
 Publish the current package to npm registry.
 

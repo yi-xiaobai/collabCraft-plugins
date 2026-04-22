@@ -12,11 +12,32 @@ description: Full release workflow - build, version, publish, and push
 
 ## Parameters
 
-`/release [patch|minor|major] [--dry-run]`
+`/release [request]`
 
-Defaults: version-type=patch
+`request` can be:
+- **Empty** → interactive mode: show current version + ask which bump and whether dry-run
+- **Natural language** → e.g. `/release 发个大版本 先预演`、`/release minor`
+- **Explicit args** (power users): `[patch|minor|major] [--dry-run]`
+
+Defaults: `version-type=patch`, dry-run off
 
 ## Your task
+
+### Step 0: Determine inputs
+
+- **No argument** → prompt:
+  ```
+  Current version: <version>
+  Current branch: <branch>
+
+  Version bump?
+    [1] patch  [2] minor  [3] major
+
+  Dry run first? [y/N]
+  ```
+  Wait for reply.
+- **Natural language** → infer bump + dry-run.
+- **Explicit args** → use directly.
 
 Execute the full release workflow: build → version → publish → git push.
 

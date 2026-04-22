@@ -13,13 +13,37 @@ description: Merge a branch into current branch with conflict resolution
 
 ## Parameters
 
-`/branch-merge <source_branch> [--no-ff] [--squash]`
+`/branch-merge [request]`
 
-- `source_branch`: Branch to merge into current branch (required)
-- `--no-ff`: Force a merge commit even if fast-forward is possible
-- `--squash`: Squash all commits into one
+`request` can be:
+- **Empty** → interactive mode: list recent branches and ask which to merge + merge style
+- **Natural language** → e.g. `/branch-merge 合并 feat-login 进来`、`/branch-merge squash dev`
+- **Explicit args** (power users): `<source_branch> [--no-ff] [--squash]`
+
+Merge style options:
+- default: fast-forward when possible
+- `--no-ff`: always create a merge commit
+- `--squash`: squash all commits into one
 
 ## Your task
+
+### Step 0: Determine inputs
+
+- **No argument** → prompt:
+  ```
+  Recent branches:
+    1. <branch>  (updated X ago)
+    2. <branch>  (updated X ago)
+    ...
+
+  Which branch to merge into <current>?
+  Merge style? [1] fast-forward  [2] --no-ff  [3] --squash  (default: 1)
+  ```
+  Wait for reply.
+- **Natural language** → infer source branch + style.
+- **Explicit args** → use directly.
+
+### Step 1: Pre-check
 
 1. **Pre-check**:
    - Verify source branch exists (local or remote)

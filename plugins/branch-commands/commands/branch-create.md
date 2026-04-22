@@ -12,11 +12,30 @@ description: Create a new Git branch with auto-versioning
 
 ## Parameters
 
-`/branch-create <type> <description> [base_branch] [--ide=code|windsurf]`
+`/branch-create [request]`
 
-Defaults: base_branch=dev, ide=windsurf
+`request` can be:
+- **Empty** → interactive mode: ask for type (feat/fix/hotfix), description, optional base branch
+- **Natural language** → e.g. `/branch-create 新增登录页`、`/branch-create fix 修复滚动 bug 基于 master`
+- **Explicit args** (power users): `<type> <description> [base_branch] [--ide=code|windsurf]`
+
+Defaults: `base_branch=dev`, `ide=windsurf`
 
 ## Your task
+
+### Step 0: Determine inputs
+
+- **No argument** → prompt:
+  ```
+  Branch type? [1] feat  [2] fix  [3] hotfix
+  Description?
+  Base branch? (default: dev)
+  ```
+  Wait for reply, then proceed.
+- **Natural language** → infer type (feat/fix/hotfix) + description + base branch from the phrase.
+- **Explicit args** → parse positional + flags directly.
+
+### Step 1: Build branch name
 
 1. Parse user input for branch type, description, and base branch
 2. Generate branch name with auto-versioning: `{type}_{description}_v{N}`

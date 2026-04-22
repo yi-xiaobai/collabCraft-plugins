@@ -10,11 +10,31 @@ description: Upgrade @master/turtle package version
 
 ## Parameters
 
-`/turtle-upgrade [version] [--branch dev|master]`
+`/turtle-upgrade [request]`
 
-Defaults: version=latest, branch=dev
+`request` can be:
+- **Empty** → interactive mode: show current turtle version and ask for target version + base branch
+- **Natural language** → e.g. `/turtle-upgrade 升到最新`、`/turtle-upgrade 2.3.1 基于 master`
+- **Explicit args** (power users): `[version] [--branch dev|master]`
+
+Defaults: `version=latest`, `branch=dev`
 
 ## Task
+
+### Step 0: Determine inputs
+
+- **No argument** → prompt:
+  ```
+  Current @master/turtle: <current-version>
+
+  Target version? (blank = latest)
+  Base branch? [1] dev  [2] master  (default: 1)
+  ```
+  Wait for reply.
+- **Natural language** → infer version + base branch.
+- **Explicit args** → use directly.
+
+### Step 1: Execute
 
 1. Create branch `chore_upgrade_turtle_<version>` from `<branch>`
 2. Update `@master/turtle` version in package.json, run `pnpm i`

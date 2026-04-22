@@ -11,11 +11,38 @@ description: Undo the last commit while keeping changes
 
 ## Parameters
 
-`/commit-undo [soft|mixed|hard]`
+`/commit-undo [request]`
 
-Defaults: soft (keep changes staged)
+`request` can be:
+- **Empty** → interactive mode: show last commit and ask which mode
+- **Natural language** → e.g. `/commit-undo 保留改动`、`/commit-undo discard everything`
+- **Explicit args** (power users): `soft|mixed|hard`
+
+Defaults: `soft` (keep changes staged)
+
+Modes:
+- `soft` — undo commit, keep changes staged
+- `mixed` — undo commit, keep changes unstaged
+- `hard` — undo commit and DISCARD all changes (destructive)
 
 ## Your task
+
+### Step 0: Determine inputs
+
+- **No argument** → show last commit + prompt:
+  ```
+  Last commit: <hash> <message>
+
+  Undo mode?
+    [1] soft   — keep changes staged (default, safest)
+    [2] mixed  — keep changes unstaged
+    [3] hard   — DISCARD all changes (destructive, requires "YES")
+  ```
+  Wait for reply.
+- **Natural language** → map intent:
+  - "保留/keep" → soft / mixed depending on "staged"
+  - "丢弃/discard/reset" → hard (still require YES confirmation)
+- **Explicit args** → use directly.
 
 1. Show what will be undone (commit hash, message, author, files)
 2. Execute the appropriate reset mode:
