@@ -15,7 +15,7 @@ description: Commit, push, and create GitLab Merge Request
 `/commit-push-mr [request]`
 
 `request` can be:
-- **Empty** → use defaults (target=`dev`, normal MR). Proceed directly.
+- **Empty** → interactive mode: ask target branch and MR type
 - **Natural language** → e.g. `/commit-push-mr 合到 main 草稿`、`/commit-push-mr draft to master`
 - **Explicit args** (power users): `[target_branch] [--wip]`
 
@@ -25,7 +25,14 @@ Defaults: `target_branch=dev`, normal MR (not draft)
 
 ### Step 0: Determine inputs
 
-- **No argument** → use defaults (target=`dev`, non-draft).
+- **No argument** → prompt:
+  ```
+  Current branch: <current>
+
+  Target branch? (default: dev)
+  MR type? [1] normal  [2] --wip (draft)  (default: 1)
+  ```
+  Wait for reply.
 - **Natural language** → infer `target_branch` (e.g. "main"/"master"/"dev") and whether WIP/draft is requested.
 - **Explicit args** → use directly.
 
