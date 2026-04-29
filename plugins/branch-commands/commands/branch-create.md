@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(git fetch:*), Bash(git branch:*), Bash(git push:*), Bash(git checkout:*), Bash(open:*), Bash(code:*), Bash(windsurf:*)
-description: Create a new Git branch with auto-versioning
+description: Create a new Git branch — summarizes your description into ≤3 words and combines with feat/fix/hotfix (e.g. feat_add-login-page_v1)
 ---
 
 ## Context
@@ -38,13 +38,17 @@ Defaults: `base_branch=dev`, `ide=windsurf`
 ### Step 1: Build branch name
 
 1. Parse user input for branch type, description, and base branch
-2. Generate branch name with auto-versioning: `{type}_{description}_v{N}`
+2. **Summarize the description into AT MOST 3 English words** that capture the core intent
+   - If user input is Chinese or a long sentence, extract the key action/object (e.g. 「新增登录页」→ `add-login-page`, 「修复首页滚动卡顿」→ `fix-scroll-lag`)
+   - Use lowercase kebab-case, drop filler words (the/a/of/为/的/了…)
+   - Hard cap: **3 words maximum**, joined with `-`
+3. Generate branch name with auto-versioning: `{type}_{summary}_v{N}`
    - Check existing branches of same type for max version number
    - Increment version by 1
-   - Translate Chinese description to English kebab-case
-3. Create remote branch from base branch
-4. Checkout local branch tracking remote
-5. Optionally open in IDE
-6. Report the created branch name
+   - Example: `feat_add-login-page_v3`, `fix_scroll-lag_v1`
+4. Create remote branch from base branch
+5. Checkout local branch tracking remote
+6. Optionally open in IDE
+7. Report the created branch name
 
 You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
