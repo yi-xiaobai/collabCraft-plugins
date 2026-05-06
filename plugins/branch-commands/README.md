@@ -1,6 +1,6 @@
 # Branch Commands
 
-Git branch workflow commands: create, switch, merge, and delete branches.
+Git branch workflow commands: create, switch, and merge branches.
 
 ## Commands
 
@@ -57,22 +57,3 @@ Merge a branch into current branch with auto-update and conflict resolution.
 /branch-merge feat --squash  # squash merge
 ```
 
-### /branch-delete
-
-```bash
-/branch-delete [option]
-```
-
-Clean up merged or stale branches.
-
-```bash
-/branch-delete           # show deletable branches
-/branch-delete merged    # delete all merged branches
-/branch-delete feat-old  # delete specific branch
-```
-
-## Safety Rules
-
-- Never deletes: `main`, `master`, `dev`
-- Never deletes the current branch
-- Remote branch deletion requires confirmation
