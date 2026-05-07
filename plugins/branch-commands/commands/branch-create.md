@@ -1,6 +1,6 @@
 ---
 allowed-tools: Bash(git fetch:*), Bash(git branch:*), Bash(git push:*), Bash(git checkout:*), Bash(open:*), Bash(code:*), Bash(windsurf:*)
-description: Create a new Git branch — summarizes your description into ≤3 words and combines with feat/fix/hotfix (e.g. feat_add-login-page_v1)
+description: Create a new Git branch — delegates slug generation to the `branch-namer` agent (≤3 words) and combines with feat/fix/hotfix (e.g. feat_add-login-page_v1)
 ---
 
 ## Context
@@ -38,11 +38,11 @@ Defaults: `base_branch=dev`, `ide=windsurf`
 ### Step 1: Build branch name
 
 1. Parse user input for branch type, description, and base branch
-2. **Summarize the description into AT MOST 3 English words** that capture the core intent
-   - If user input is Chinese or a long sentence, extract the key action/object (e.g. 「新增登录页」→ `add-login-page`, 「修复首页滚动卡顿」→ `fix-scroll-lag`)
-   - Use lowercase kebab-case, drop filler words (the/a/of/为/的/了…)
-   - Hard cap: **3 words maximum**, joined with `-`
-3. Generate branch name with auto-versioning: `{type}_{summary}_v{N}`
+2. **Delegate slug generation to the `branch-namer` subagent**
+   - Pass the raw description and the resolved `type` hint
+   - The subagent returns a ≤3-word kebab-case slug (e.g. `add-login-page`)
+   - Do NOT inline slug logic here — trust the subagent's output
+3. Generate branch name with auto-versioning: `{type}_{slug}_v{N}`
    - Check existing branches of same type for max version number
    - Increment version by 1
    - Example: `feat_add-login-page_v3`, `fix_scroll-lag_v1`

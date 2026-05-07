@@ -28,22 +28,19 @@ Generate MR title and description based ONLY on the **actual commits in this MR*
    ```
 4. If the two lists differ, **trust the glab API result** and warn the user.
 
-### Step 2: Analyze commits
+### Step 2: Generate content
 
-- Determine primary change type (feat > fix > refactor > chore)
-- **Ignore**: revert commits and their original commits (exclude pairs)
-- Count effective commits after exclusions → call this `N`
+**Delegate to the `mr-summarizer` subagent.** Pass it:
+- The authoritative commit list from Step 1
+- The `target_branch`
 
-### Step 3: Generate content
+The subagent returns:
+- A Conventional Commits title
+- A bullet-list description with `≤ N` bullets (N = effective commits after revert-pair exclusion)
 
-- **Title**: Conventional Commits format `{type}(scope): {summary}`
-  - Summarize overall intent, do NOT copy commit messages verbatim
-- **Description**: a bullet list of change points
-  - **HARD CONSTRAINT**: number of bullets MUST be `≤ N`
-  - Prefer grouping related commits into one bullet over splitting one into many
-  - Each bullet must map to a real commit — do NOT invent features not in the commit list
+Do NOT inline title/description rules here — trust the subagent's output.
 
-### Step 4: Update MR and report
+### Step 3: Update MR and report
 
 Call `glab mr update` directly with the generated title and description, then print a summary:
 

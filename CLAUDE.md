@@ -16,7 +16,10 @@ docs/                       # Design documents
 scripts/lint-plugins.sh     # Plugin lint script
 ```
 
-Each plugin: `.claude-plugin/plugin.json` + `commands/*.md` + `README.md`.
+Each plugin: `.claude-plugin/plugin.json` + `commands/*.md` + optional `agents/*.md` + `README.md`.
+
+- `commands/*.md` — user-triggered slash commands
+- `agents/*.md` — reusable subagents that commands delegate to (e.g. `branch-namer`, `commit-message-writer`, `mr-summarizer`)
 
 Run `bash scripts/lint-plugins.sh` after commit or push — must pass.
 

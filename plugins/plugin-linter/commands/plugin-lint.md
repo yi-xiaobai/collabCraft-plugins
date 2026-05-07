@@ -6,24 +6,27 @@ description: Lint Claude Code plugin files for official style compliance
 ## Context
 
 - Plugin directory: !`find . -name "commands" -type d | head -5`
-- Plugin files count: !`find . -path "*/commands/*.md" | wc -l`
+- Command files count: !`find . -path "*/commands/*.md" | wc -l`
+- Agent files count: !`find . -path "*/agents/*.md" | wc -l`
 
 ## Parameters
 
 `/plugin-lint [path]`
 
-Defaults: scan all plugins/*/commands/*.md files
+Defaults: scan all `plugins/*/commands/*.md` and `plugins/*/agents/*.md` files
 
 ## Your task
 
-Lint plugin files for compliance with official style. Check:
+Lint plugin files for compliance with official style. Apply different rule sets based on file location:
+
+## Rules for `commands/*.md`
 
 ### 1. YAML Front Matter
 - [ ] `allowed-tools` must use specific patterns (e.g., `Bash(git add:*)`) not generic `Bash`
 - [ ] `description` must be present, concise, and in **English**
 
 ### 2. Language
-- [ ] All content must be in **English** (no Chinese characters in command files)
+- [ ] All content must be in **English** (no Chinese characters)
 
 ### 3. Parameters Section
 - [ ] Must follow simplified format:
@@ -46,6 +49,22 @@ Lint plugin files for compliance with official style. Check:
 - [ ] Describe WHAT to do, not HOW (no hardcoded bash scripts)
 - [ ] Keep it concise, let Claude reason about implementation
 
+## Rules for `agents/*.md`
+
+### 1. YAML Front Matter
+- [ ] `name` field required and must match the filename (without `.md`)
+- [ ] `description` required and in **English**
+- [ ] `tools` should use specific patterns (not generic `Bash`)
+  - Omitting `tools` is allowed but warned (agent inherits all tools)
+
+### 2. Language
+- [ ] All content must be in **English**
+
+### 3. Structure
+- [ ] Must NOT use `## Context` / `## Your task` / `## Parameters` (those are command-only)
+- [ ] Should describe the agent's **role**, **input**, **output format**, and **rules**
+- [ ] Must NOT include the "single message" instruction (agents are reusable, not one-shot)
+
 ## Output format
 
 ```
@@ -64,6 +83,8 @@ Summary: X passed, Y issues found
 ```
 
 ## Reference
+
+### Command template
 
 ```markdown
 ---
@@ -88,4 +109,34 @@ Defaults: arg1=default, flag=false
 3. Report result
 
 You MUST do all of the above in a single message.
+```
+
+### Agent template
+
+```markdown
+---
+name: my-agent
+description: One-line role + when to invoke. Used by the main agent for delegation.
+tools: Read, Bash(git diff:*)
+---
+
+# My Agent
+
+You are a <role> specialist...
+
+## Input
+
+- Field 1: ...
+
+## Output format
+
+Return ONLY ...
+
+## Rules
+
+1. ...
+
+## Examples
+
+...
 ```

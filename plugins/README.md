@@ -24,7 +24,9 @@ plugins/
 │   ├── commands/
 │   │   ├── branch-create.md
 │   │   ├── branch-switch.md
-│   │   └── branch-delete.md
+│   │   └── branch-merge.md
+│   ├── agents/
+│   │   └── branch-namer.md
 │   └── README.md
 ├── commit-commands/
 │   ├── .claude-plugin/plugin.json
@@ -33,12 +35,25 @@ plugins/
 │   │   ├── commit-push.md
 │   │   ├── commit-push-mr.md
 │   │   └── commit-undo.md
+│   ├── agents/
+│   │   └── commit-message-writer.md
 │   └── README.md
 └── mr-commands/
     ├── .claude-plugin/plugin.json
-    ├── commands/mr-list.md
+    ├── commands/
+    │   ├── mr-list.md
+    │   ├── mr-beautify.md
+    │   └── mr-update.md
+    ├── agents/
+    │   └── mr-summarizer.md
     └── README.md
 ```
+
+每个 plugin 目录约定：
+
+- `commands/*.md` — 用户主动触发的 slash 命令
+- `agents/*.md` — 可被命令委派的子代理（subagent），用于复用复杂的 AI 任务
+- `.claude-plugin/plugin.json` — 插件清单
 
 ## Plugin vs Skill
 
