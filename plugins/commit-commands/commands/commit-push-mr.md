@@ -38,9 +38,11 @@ Defaults: `target_branch=dev`, normal MR (not draft)
 
 Based on the above changes:
 
-1. Analyze the changes and generate a commit message using Conventional Commits format
-2. Stage relevant files (avoid .env, credentials, secrets)
-3. Create the commit
+1. Stage relevant files (avoid `.env`, credentials, secrets)
+2. **Delegate message generation to the `commit-message-writer` subagent**
+   - The subagent reads the staged diff and returns a Conventional Commits message
+   - Do NOT inline message rules here — trust the subagent's output
+3. Create the commit with the returned message
 4. Push the branch to origin
 5. Create a GitLab Merge Request:
    - `glab mr create --target-branch <branch> --fill --assignee @me --remove-source-branch --squash-before-merge [--draft] --yes`

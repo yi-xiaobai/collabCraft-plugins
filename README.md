@@ -7,7 +7,7 @@ A collection of team Git workflow plugins for Claude Code.
 | Plugin | Commands | Description |
 |--------|----------|-------------|
 | **branch-commands** | `/branch-create`, `/branch-switch`, `/branch-delete` | Git branch workflow |
-| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr`, `/commit-undo` | Git commit workflow |
+| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr` | Git commit workflow |
 | **mr-commands** | `/mr-beautify`, `/mr-list` | GitLab MR workflow |
 | **deploy-commands** | `/build`, `/publish`, `/release` | Build & publish workflow |
 | **upgrade-commands** | `/turtle-upgrade` | Dependency upgrade workflow |

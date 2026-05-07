@@ -14,15 +14,11 @@ description: Commit and push to remote
 
 Based on the above changes, commit and push to remote.
 
-1. Analyze the changes and generate a commit message using Conventional Commits format:
-   - `feat`: New feature
-   - `fix`: Bug fix
-   - `docs`: Documentation
-   - `style`: Code style
-   - `refactor`: Refactoring
-   - `chore`: Build/tools
-2. Stage relevant files (avoid .env, credentials, secrets)
-3. Create the commit
+1. Stage relevant files (avoid `.env`, credentials, secrets)
+2. **Delegate message generation to the `commit-message-writer` subagent**
+   - The subagent reads the staged diff and returns a Conventional Commits message
+   - Do NOT inline message rules here — trust the subagent's output
+3. Create the commit with the returned message
 4. Push to remote origin
 5. Report the push result
 

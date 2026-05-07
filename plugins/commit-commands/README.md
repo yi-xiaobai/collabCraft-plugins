@@ -1,38 +1,35 @@
 # Commit Commands
 
-Git commit workflow commands: commit, push, create MR, and undo.
+Git commit workflow commands: commit, push, create MR.
+
+All commands delegate Conventional Commits message generation to the
+[`commit-message-writer`](./agents/commit-message-writer.md) subagent, so the
+commit format stays consistent across the whole plugin.
 
 ## Commands
 
 ### /commit
 
-Auto-generates and creates a git commit.
+Stages changes and creates a git commit with an auto-generated message.
 
 ### /commit-push
 
-Commits and pushes to remote in one step.
+Stages, commits, and pushes to remote in one step.
 
 ### /commit-push-mr
 
 ```bash
-/commit-push-mr [target_branch]
+/commit-push-mr [target_branch] [--wip]
 ```
 
-Commits, pushes, and creates a GitLab MR. Default target: `dev`.
+Stages, commits, pushes, and creates a GitLab MR. Default target: `dev`.
 
-### /commit-undo
+## Agents
 
-```bash
-/commit-undo [mode]
-```
+### commit-message-writer
 
-Undoes the last commit while preserving changes.
-
-| Mode | Behavior |
-|------|----------|
-| `soft` (default) | Keep changes staged |
-| `mixed` | Keep changes unstaged |
-| `hard` | Discard all changes |
+Reads the staged diff and returns a Conventional Commits message. Used by all
+three commands above. See [`agents/commit-message-writer.md`](./agents/commit-message-writer.md).
 
 ## Requirements
 
