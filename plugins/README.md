@@ -7,7 +7,7 @@
 | 插件 | 命令 | 说明 |
 |------|------|------|
 | **branch-commands** | `/branch-create`, `/branch-switch`, `/branch-delete` | Git 分支工作流 |
-| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr`, `/commit-undo` | Git 提交工作流 |
+| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr` | Git 提交工作流 |
 | **mr-commands** | `/mr-list` | GitLab MR 工作流 |
 
 > **个人效率工具**（Skills，非插件）：
@@ -33,8 +33,7 @@ plugins/
 │   ├── commands/
 │   │   ├── commit.md
 │   │   ├── commit-push.md
-│   │   ├── commit-push-mr.md
-│   │   └── commit-undo.md
+│   │   └── commit-push-mr.md
 │   ├── agents/
 │   │   └── commit-message-writer.md
 │   └── README.md
