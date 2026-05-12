@@ -124,7 +124,6 @@ lint_agent() {
         ((warnings++))
     fi
 
-    # Agent-specific: filename should match name field
     local fname
     fname=$(basename "$file" .md)
     local name_field
