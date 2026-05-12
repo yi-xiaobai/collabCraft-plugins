@@ -15,7 +15,6 @@ A collection of team Git workflow plugins for Claude Code.
 ## Installation
 
 ```bash
-# Add marketplace and install plugins
 /plugin marketplace add ./collabcraft-plugins
 /plugin install branch-commands commit-commands mr-commands deploy-commands upgrade-commands@collabcraft-plugins
 ```
