@@ -6,9 +6,12 @@
 
 | 插件 | 命令 | 说明 |
 |------|------|------|
-| **branch-commands** | `/branch-create`, `/branch-switch`, `/branch-delete` | Git 分支工作流 |
+| **branch-commands** | `/branch-create`, `/branch-merge`, `/branch-switch` | Git 分支工作流 |
 | **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr` | Git 提交工作流 |
-| **mr-commands** | `/mr-list` | GitLab MR 工作流 |
+| **mr-commands** | `/mr-list`, `/mr-beautify`, `/mr-update` | GitLab MR 工作流 |
+| **deploy-commands** | `/build`, `/publish`, `/release` | 构建与发布工作流 |
+| **upgrade-commands** | `/turtle-upgrade` | 依赖升级工作流 |
+| **plugin-linter** | `/plugin-lint` | 插件合规检查 |
 
 > **个人效率工具**（Skills，非插件）：
 > - `/log`, `/generate-week` → work-log skill
@@ -23,8 +26,8 @@ plugins/
 │   ├── .claude-plugin/plugin.json
 │   ├── commands/
 │   │   ├── branch-create.md
-│   │   ├── branch-switch.md
-│   │   └── branch-merge.md
+│   │   ├── branch-merge.md
+│   │   └── branch-switch.md
 │   ├── agents/
 │   │   └── branch-namer.md
 │   └── README.md
@@ -37,14 +40,31 @@ plugins/
 │   ├── agents/
 │   │   └── commit-message-writer.md
 │   └── README.md
-└── mr-commands/
+├── mr-commands/
+│   ├── .claude-plugin/plugin.json
+│   ├── commands/
+│   │   ├── mr-list.md
+│   │   ├── mr-beautify.md
+│   │   └── mr-update.md
+│   ├── agents/
+│   │   └── mr-summarizer.md
+│   └── README.md
+├── deploy-commands/
+│   ├── .claude-plugin/plugin.json
+│   ├── commands/
+│   │   ├── build.md
+│   │   ├── publish.md
+│   │   └── release.md
+│   └── README.md
+├── upgrade-commands/
+│   ├── .claude-plugin/plugin.json
+│   ├── commands/
+│   │   └── turtle-upgrade.md
+│   └── README.md
+└── plugin-linter/
     ├── .claude-plugin/plugin.json
     ├── commands/
-    │   ├── mr-list.md
-    │   ├── mr-beautify.md
-    │   └── mr-update.md
-    ├── agents/
-    │   └── mr-summarizer.md
+    │   └── plugin-lint.md
     └── README.md
 ```
 
