@@ -148,6 +148,3 @@ plan.md 命令被触发
 - [Conventional Commits](https://www.conventionalcommits.org/)
 
 ---
-
-*文档版本：v1.0*
-*更新时间：2024-03-30*
