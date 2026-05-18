@@ -22,3 +22,7 @@
 4. 单个 flag / 无参数 — 别过度设计
 
 ---
+
+## 记性
+
+1. agents 多个command之间可以复用的 单个command的没必要agents
