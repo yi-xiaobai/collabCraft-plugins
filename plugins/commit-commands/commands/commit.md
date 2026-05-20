@@ -21,3 +21,12 @@ Based on the above changes, create a single git commit.
 3. Create the commit with the returned message
 
 You MUST do all of the above in a single message.
+
+## Error Handling
+
+- NEVER use `--no-verify` or `--force`
+- If pre-commit check fails, **delegate recovery to the `pre-commit-handler` subagent**
+  - Pass the hook failure output
+  - On `RETRY`: commit again; repeat until success or `STOP`
+  - On `STOP`: report the reason to the user
+  - Do NOT inline recovery rules here — trust the subagent's output

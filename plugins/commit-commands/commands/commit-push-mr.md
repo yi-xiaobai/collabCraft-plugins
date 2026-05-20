@@ -53,7 +53,9 @@ You MUST do all of the above in a single message. Do not send any other text or 
 ## Error Handling
 
 - NEVER use `--no-verify` or `--force`
-- If pre-commit check fails:
-  - Style issues (lint, formatting): pre-commit auto-fixes them, re-stage modified files and commit again
-  - Logic issues (branch naming, code errors): stop immediately and report the reason
+- If pre-commit check fails, **delegate recovery to the `pre-commit-handler` subagent**
+  - Pass the hook failure output
+  - On `RETRY`: commit again; repeat until success or `STOP`
+  - On `STOP`: report the reason to the user
+  - Do NOT inline recovery rules here — trust the subagent's output
 - Other failures (push, mr create, etc.): stop immediately and report the reason

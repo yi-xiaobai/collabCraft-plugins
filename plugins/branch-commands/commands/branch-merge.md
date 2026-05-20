@@ -71,6 +71,16 @@ Merge style options:
    - Show merge status
    - Show commit log of merged changes
 
+## Error Handling (merge commit)
+
+- NEVER use `--no-verify` or `--force`
+- If pre-commit check fails when completing the merge commit, **delegate recovery to the `pre-commit-handler` subagent**
+  - Pass the hook failure output and context `merge commit`
+  - On `RETRY`: complete the merge commit again; repeat until success or `STOP`
+  - On `STOP`: report the reason to the user
+  - Do NOT inline recovery rules here — trust the subagent's output
+- Other failures: stop immediately and report the reason
+
 ## Conflict resolution
 
 When conflicts occur, present options:
