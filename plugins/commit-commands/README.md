@@ -38,10 +38,12 @@ three commands above. See [`agents/commit-message-writer.md`](./agents/commit-me
 
 ### pre-commit-handler
 
-Recovers from pre-commit hook failures: auto-fixes **business file** issues and
-returns `RETRY`; for **non-business file** issues (hooks, configs, environment)
-returns `STOP` so the user resolves manually. Shared across commit, branch,
-deploy, and upgrade workflows. See [`agents/pre-commit-handler.md`](./agents/pre-commit-handler.md).
+Recovers from pre-commit hook failures: auto-fixes **real source code/style**
+violations and returns `RETRY`. For hook infrastructure, check
+baseline/threshold/limit data, or metric budget exceeded, returns `STOP` so the
+user resolves manually — never auto-bumps baselines or thresholds. Shared
+across commit, branch, deploy, and upgrade workflows. See
+[`agents/pre-commit-handler.md`](./agents/pre-commit-handler.md).
 
 ## Requirements
 

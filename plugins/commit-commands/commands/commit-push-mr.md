@@ -56,6 +56,6 @@ You MUST do all of the above in a single message. Do not send any other text or 
 - If pre-commit check fails, **delegate recovery to the `pre-commit-handler` subagent**
   - Pass the hook failure output
   - On `RETRY`: commit again; repeat until success or `STOP`
-  - On `STOP`: report the hook failure to the user — do not attempt fixes; user resolves manually
+  - On `STOP`: report the hook failure to the user — do not attempt fixes (never bump baselines/thresholds); user resolves manually
   - Do NOT inline recovery rules here — trust the subagent's output
 - Other failures (push, mr create, etc.): stop immediately and report the reason
