@@ -52,6 +52,6 @@ You MUST do all of the above in a single message.
 - If pre-commit check fails on the upgrade commit (Step 3), **delegate recovery to the `pre-commit-handler` subagent**
   - Pass the hook failure output
   - On `RETRY`: commit again; repeat until success or `STOP`
-  - On `STOP`: report the reason to the user
+  - On `STOP`: report the hook failure to the user — do not attempt fixes; user resolves manually
   - Do NOT inline recovery rules here — trust the subagent's output
 - Other failures (push, mr create, etc.): stop immediately and report the reason

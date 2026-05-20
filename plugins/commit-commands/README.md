@@ -38,8 +38,9 @@ three commands above. See [`agents/commit-message-writer.md`](./agents/commit-me
 
 ### pre-commit-handler
 
-Recovers from pre-commit hook failures by fixing only business files (never
-hook infrastructure). Returns `RETRY` or `STOP`. Shared across commit, branch,
+Recovers from pre-commit hook failures: auto-fixes **business file** issues and
+returns `RETRY`; for **non-business file** issues (hooks, configs, environment)
+returns `STOP` so the user resolves manually. Shared across commit, branch,
 deploy, and upgrade workflows. See [`agents/pre-commit-handler.md`](./agents/pre-commit-handler.md).
 
 ## Requirements

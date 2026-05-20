@@ -77,7 +77,7 @@ Merge style options:
 - If pre-commit check fails when completing the merge commit, **delegate recovery to the `pre-commit-handler` subagent**
   - Pass the hook failure output and context `merge commit`
   - On `RETRY`: complete the merge commit again; repeat until success or `STOP`
-  - On `STOP`: report the reason to the user
+  - On `STOP`: report the hook failure to the user — do not attempt fixes; user resolves manually
   - Do NOT inline recovery rules here — trust the subagent's output
 - Other failures: stop immediately and report the reason
 
