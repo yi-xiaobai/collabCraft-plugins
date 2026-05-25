@@ -29,3 +29,4 @@
 2. skills 让AI自主执行
 3. rule 规则
 4. hooks 
+5. 
