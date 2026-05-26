@@ -23,7 +23,7 @@
 
 ---
 
-## 记性
+## 总结
 
 1. agents 多个command之间可以复用的 单个command的没必要agents
 2. skills 让AI自主执行
