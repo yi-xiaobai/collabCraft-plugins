@@ -1,0 +1,17 @@
+{
+  "name": "deploy-commands",
+  "version": "0.1.0",
+  "description": "Build and publish workflow commands for Node.js and frontend projects.",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "interface": {
+    "displayName": "Deploy Commands",
+    "shortDescription": "Build, publish, and release project artifacts.",
+    "longDescription": "Provides repeatable build and release workflows with package manager detection and release safety checks.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": [],
+    "defaultPrompt": "Help me build or publish the current project with deploy-commands."
+  }
+}

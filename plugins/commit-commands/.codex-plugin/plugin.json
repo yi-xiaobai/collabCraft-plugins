@@ -1,0 +1,17 @@
+{
+  "name": "commit-commands",
+  "version": "0.1.0",
+  "description": "Git commit workflow commands for committing, pushing, and creating merge requests.",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "interface": {
+    "displayName": "Commit Commands",
+    "shortDescription": "Commit, push, and open merge requests consistently.",
+    "longDescription": "Provides structured git commit workflows with shared commit message and pre-commit handling helpers.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": [],
+    "defaultPrompt": "Help me commit and push changes with commit-commands."
+  }
+}
