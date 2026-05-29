@@ -6,9 +6,9 @@ description: Create a git commit with auto-generated message
 ## Context
 
 - Current git status: !`git status`
-- Current git diff (staged and unstaged changes): !`git diff HEAD`
+- Current git diff (staged and unstaged changes): !`git diff "$(git rev-parse --verify HEAD 2>/dev/null || git hash-object -t tree /dev/null)"`
 - Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
+- Recent commits: !`git log --oneline -10 2>/dev/null || echo "No commits yet"`
 
 ## Your task
 
