@@ -1,6 +1,6 @@
 # CollabCraft Plugins
 
-A repository of team Git workflow plugins with Codex-compatible manifests.
+A repository of team Git workflow plugins for Claude Code.
 
 ## Plugins
 
@@ -13,14 +13,12 @@ A repository of team Git workflow plugins with Codex-compatible manifests.
 | **upgrade-commands** | `/turtle-upgrade` | Dependency upgrade workflow |
 | **plugin-linter** | `/plugin-lint` | Plugin convention checks |
 
-## Codex Layout
+## Layout
 
-Each plugin now keeps a Codex manifest in addition to the existing Claude-oriented files:
+Each plugin follows the Claude Code plugin structure:
 
 ```text
 plugins/<plugin-name>/
-├── .codex-plugin/
-│   └── plugin.json
 ├── .claude-plugin/
 │   └── plugin.json
 ├── commands/
@@ -28,22 +26,21 @@ plugins/<plugin-name>/
 └── README.md
 ```
 
-The repository marketplace file for Codex is:
+The repository marketplace file is:
 
 ```text
-.agents/plugins/marketplace.json
+.claude-plugin/marketplace.json
 ```
 
 ## Installation
 
-If your Codex setup supports repo-local marketplaces, add the repository marketplace and then install plugins from it:
+Add the repository marketplace and then install plugins from it:
 
 ```bash
-codex plugin marketplace add ./.agents/plugins
-codex plugin install branch-commands commit-commands mr-commands deploy-commands upgrade-commands plugin-linter@collabcraft-plugins
+/plugin marketplace add ./.claude-plugin
+/plugin install branch-commands commit-commands mr-commands deploy-commands upgrade-commands plugin-linter@collabcraft-plugins
 ```
 
 ## Reference
 
-- Codex repository-specific notes: [`docs/codex-plugin-spec.md`](./docs/codex-plugin-spec.md)
 - Plugin inventory: [`plugins/README.md`](./plugins/README.md)

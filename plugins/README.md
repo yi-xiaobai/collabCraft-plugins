@@ -1,6 +1,6 @@
 # CollabCraft Plugins
 
-团队级 Git 工作流插件，现已补齐 Codex 兼容清单，并通过仓库内 marketplace 统一分发。
+团队级 Git 工作流插件，面向 Claude Code，通过仓库内 marketplace 统一分发。
 
 ## 插件列表
 
@@ -23,7 +23,6 @@
 ```
 plugins/
 ├── branch-commands/
-│   ├── .codex-plugin/plugin.json
 │   ├── .claude-plugin/plugin.json
 │   ├── commands/
 │   │   ├── branch-create.md
@@ -33,7 +32,6 @@ plugins/
 │   │   └── branch-namer.md
 │   └── README.md
 ├── commit-commands/
-│   ├── .codex-plugin/plugin.json
 │   ├── .claude-plugin/plugin.json
 │   ├── commands/
 │   │   ├── commit.md
@@ -43,7 +41,6 @@ plugins/
 │   │   └── commit-message-writer.md
 │   └── README.md
 ├── mr-commands/
-│   ├── .codex-plugin/plugin.json
 │   ├── .claude-plugin/plugin.json
 │   ├── commands/
 │   │   ├── mr-list.md
@@ -53,7 +50,6 @@ plugins/
 │   │   └── mr-summarizer.md
 │   └── README.md
 ├── deploy-commands/
-│   ├── .codex-plugin/plugin.json
 │   ├── .claude-plugin/plugin.json
 │   ├── commands/
 │   │   ├── build.md
@@ -61,13 +57,11 @@ plugins/
 │   │   └── release.md
 │   └── README.md
 ├── upgrade-commands/
-│   ├── .codex-plugin/plugin.json
 │   ├── .claude-plugin/plugin.json
 │   ├── commands/
 │   │   └── turtle-upgrade.md
 │   └── README.md
 └── plugin-linter/
-    ├── .codex-plugin/plugin.json
     ├── .claude-plugin/plugin.json
     ├── commands/
     │   └── plugin-lint.md
@@ -78,34 +72,26 @@ plugins/
 
 - `commands/*.md` — 用户主动触发的 slash 命令
 - `agents/*.md` — 可被命令委派的子代理（subagent），用于复用复杂的 AI 任务
-- `.codex-plugin/plugin.json` — Codex 插件清单
-- `.claude-plugin/plugin.json` — 旧目录兼容层，保留给现有工作流使用
+- `.claude-plugin/plugin.json` — Claude Code 插件清单
 
-## Codex Marketplace
+## Marketplace
 
 仓库级 marketplace 文件位于：
 
 ```text
-.agents/plugins/marketplace.json
+.claude-plugin/marketplace.json
 ```
 
-每个条目都指向 `./plugins/<plugin-name>`，可用于 Codex 本地插件发现和安装。
+每个条目都指向 `./plugins/<plugin-name>`，可用于 Claude Code 插件发现和安装。
 
-## Codex Manifest 最低要求
+## Manifest 最低要求
 
-每个 `plugins/<name>/.codex-plugin/plugin.json` 至少包含：
+每个 `plugins/<name>/.claude-plugin/plugin.json` 至少包含：
 
 - `name`
 - `version`
 - `description`
 - `author.name`
-- `interface.displayName`
-- `interface.shortDescription`
-- `interface.longDescription`
-- `interface.developerName`
-- `interface.category`
-- `interface.capabilities`
-- `interface.defaultPrompt`
 
 ## Plugin vs Skill
 
