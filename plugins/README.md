@@ -89,7 +89,6 @@ plugins/
 每个 `plugins/<name>/.claude-plugin/plugin.json` 至少包含：
 
 - `name`
-- `version`
 - `description`
 - `author.name`
 
