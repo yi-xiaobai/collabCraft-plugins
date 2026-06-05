@@ -17,26 +17,38 @@ description: Create a new Git branch — delegates slug generation to the `branc
 `request` can be:
 - **Empty** → interactive mode: ask for type (feat/fix/hotfix), description, optional base branch
 - **Natural language** → e.g. `/branch-create 新增登录页`、`/branch-create fix 修复滚动 bug 基于 master`
-- **Explicit args**: `<type> <description> [base_branch] [--ide=code|windsurf]`
+- **Explicit args** (power users): `<type> <description> [base_branch] [--ide=code|windsurf]`
 
 Defaults: `base_branch=dev`, `ide=windsurf`
 
 ## Your task
 
-Create a branch from the latest **remote** base branch, switch to it, push it to remote so it's tracked upstream, optionally open in the IDE, and report the final branch name.
+### Step 0: Determine inputs
 
-Rules:
-- Resolve `type` (feat/fix/hotfix), `description`, and `base_branch` from the input. If input is empty, prompt the user with this block first and wait for the reply:
+- **No argument** → prompt:
   ```
   Branch type? [1] feat  [2] fix  [3] hotfix
   Description?
   Base branch? (default: dev)
   ```
-- The base must be in sync with remote before branching off it.
-- The new branch must exist on the remote and be tracked when you're done.
-- Delegate slug generation to the `branch-namer` subagent (≤3-word kebab-case).
-- Branch name format: `{type}_{slug}_v{N}`, auto-incrementing `N` past the max existing version of the same type. Never include the base branch in the name.
-- Use portable shell that works on macOS/BSD, and unambiguous git refs.
-- If any step fails, stop and report the error instead of continuing.
+  Wait for reply, then proceed.
+- **Natural language** → infer type (feat/fix/hotfix) + description + base branch from the phrase.
+- **Explicit args** → parse positional + flags directly.
 
-Do all of the above in a single message — tool calls only, no extra text.
+### Step 1: Build branch name
+
+1. Parse user input for branch type, description, and base branch
+2. **Delegate slug generation to the `branch-namer` subagent**
+   - Pass the raw description and the resolved `type` hint
+   - The subagent returns a ≤3-word kebab-case slug (e.g. `add-login-page`)
+   - Do NOT inline slug logic here — trust the subagent's output
+3. Generate branch name with auto-versioning: `{type}_{slug}_v{N}`
+   - Check existing branches of same type for max version number
+   - Increment version by 1
+   - Example: `feat_add-login-page_v3`, `fix_scroll-lag_v1`
+4. Create remote branch from base branch
+5. Checkout local branch tracking remote
+6. Optionally open in IDE
+7. Report the created branch name
+
+You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
