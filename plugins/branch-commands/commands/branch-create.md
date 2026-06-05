@@ -47,10 +47,10 @@ Defaults: `base_branch=dev`, `ide=windsurf`
    - Increment version by 1
    - Example: `feat_add-login-page_v3`, `fix_scroll-lag_v1`
 4. Refresh the base branch before creating anything
-   - Run `git fetch origin`
-   - Run `git pull --ff-only origin <base_branch>`
-   - If pull fails, stop and explain that the base branch must be fixed manually first
-5. Create the new branch from the refreshed base branch
+   - Ensure the branch is created from the latest available state of `<base_branch>`
+   - Do not update the current branch by mistake while refreshing `<base_branch>`
+   - Avoid switching away from the user's current working branch unless absolutely necessary
+5. Create the new branch from the refreshed `<base_branch>`
 6. Push the new branch and set upstream
 7. Optionally open in IDE
 8. Report the created branch name
