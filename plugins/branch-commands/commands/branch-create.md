@@ -55,7 +55,8 @@ Defaults: `base_branch=dev`, `ide=windsurf`
    - Avoid switching away from the user's current working branch unless absolutely necessary
 5. Create the new branch from the refreshed `<base_branch>`
 6. Push the new branch and set upstream
-7. Optionally open in IDE
-8. Report the created branch name
+7. Automatically switch to the newly created branch
+8. Optionally open in IDE
+9. Report the created branch name
 
 You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
