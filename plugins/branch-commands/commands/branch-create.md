@@ -1,5 +1,5 @@
 ---
-allowed-tools: Bash(git fetch:*), Bash(git branch:*), Bash(git push:*), Bash(git checkout:*), Bash(open:*), Bash(code:*), Bash(windsurf:*)
+allowed-tools: Bash(git fetch:*), Bash(git branch:*), Bash(git push:*), Bash(git checkout:*), Bash(git pull:*), Bash(open:*), Bash(code:*), Bash(windsurf:*)
 description: Create a new Git branch — delegates slug generation to the `branch-namer` agent (≤3 words) and combines with feat/fix/hotfix (e.g. feat_add-login-page_v1)
 ---
 
@@ -46,9 +46,13 @@ Defaults: `base_branch=dev`, `ide=windsurf`
    - Check existing branches of same type for max version number
    - Increment version by 1
    - Example: `feat_add-login-page_v3`, `fix_scroll-lag_v1`
-4. Create remote branch from base branch
-5. Checkout local branch tracking remote
-6. Optionally open in IDE
-7. Report the created branch name
+4. Refresh the base branch before creating anything
+   - Run `git fetch origin`
+   - Run `git pull --ff-only origin <base_branch>`
+   - If pull fails, stop and explain that the base branch must be fixed manually first
+5. Create the new branch from the refreshed base branch
+6. Push the new branch and set upstream
+7. Optionally open in IDE
+8. Report the created branch name
 
 You MUST do all of the above in a single message. Do not send any other text or messages besides the tool calls.
