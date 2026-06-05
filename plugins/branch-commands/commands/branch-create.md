@@ -34,10 +34,13 @@ Defaults: `base_branch=dev`, `ide=windsurf`
   Wait for reply, then proceed.
 - **Natural language** → infer type (feat/fix/hotfix) + description + base branch from the phrase.
 - **Explicit args** → parse positional + flags directly.
+  - If the last positional token clearly matches a branch name, treat it as `base_branch`, not as part of the description
+  - Never include the resolved `base_branch` in the text sent to `branch-namer`
 
 ### Step 1: Build branch name
 
 1. Parse user input for branch type, description, and base branch
+   - Keep `description` and `base_branch` strictly separate
 2. **Delegate slug generation to the `branch-namer` subagent**
    - Pass the raw description and the resolved `type` hint
    - The subagent returns a ≤3-word kebab-case slug (e.g. `add-login-page`)
