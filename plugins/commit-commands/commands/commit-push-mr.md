@@ -6,7 +6,7 @@ description: Commit, push, and create GitLab Merge Request
 ## Context
 
 - Current git status: !`git status`
-- Current git diff (staged and unstaged changes): !`git diff "$(git rev-parse --verify HEAD 2>/dev/null || git hash-object -t tree /dev/null)"`
+- Current git diff (staged and unstaged changes): !`git diff HEAD --`
 - Current branch: !`git branch --show-current`
 - Recent commits: !`git log --oneline -5 2>/dev/null || echo "No commits yet"`
 
