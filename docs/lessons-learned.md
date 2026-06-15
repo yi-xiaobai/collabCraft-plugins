@@ -37,3 +37,5 @@
 1. 怎么让agent改变工作流？
 2. 团队成员之间的agent交互设计
 3. 以什么形式 skills plugins 还是纯md文件
+
+最终：以skills形式来呈现
