@@ -29,6 +29,11 @@
       "name": "upgrade-commands",
       "source": "./plugins/upgrade-commands",
       "description": "依赖升级工作流：turtle-upgrade"
+    },
+    {
+      "name": "tag-commands",
+      "source": "./plugins/tag-commands",
+      "description": "Git 标签工作流：create, list"
     }
   ]
 }
