@@ -15,12 +15,12 @@ description: Create a new debug-pri tag for the current user by bumping version
 ## Your task
 1. Get current author name from git config
 2. Compute name abbreviation (first letter of each name segment, lowercase)
-3. Fetch all tags for this user matching `debug-pri-<abbr>-v*`
+3. Fetch all tags on current branch: `git tag --sort=-version:refname`
 4. Determine bump type:
    - Explicit version → use directly, skip agent
    - `patch` / `minor` / `major` → use as bump type
    - Otherwise → default to `patch`
-5. Delegate to `tag-pattern-analyzer` with abbreviation, bump type, and tag list
+5. Delegate to `tag-pattern-analyzer` with abbreviation, bump type, and all branch tags
 6. Display analysis: abbreviation, latest tag, suggested tag, reasoning
 7. If `--dry-run`, stop here
 8. Ask user to confirm the suggested tag (allow custom version input)
