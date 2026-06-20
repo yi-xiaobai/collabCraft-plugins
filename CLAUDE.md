@@ -26,3 +26,7 @@ Run `bash scripts/lint-plugins.sh` after commit or push — must pass.
 `allowed-tools` use exact patterns like `Bash(git:*)`, never generic `Bash`.
 
 Commit format: `type(scope): message`
+
+## Design Principle
+
+When designing plugins, **never hardcode specific commands, steps, or implementations**. Express *what* functionality is desired, not *how* to achieve it. This keeps plugins flexible and reusable across different contexts.
