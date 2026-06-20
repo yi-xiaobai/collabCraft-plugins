@@ -1,18 +1,18 @@
 # Tag Commands
 
-Git tag workflow for debug-pri style tags: list tags grouped by service, and create new tags by bumping version.
+Git tag workflow for tags: list tags grouped by service, and create new tags by bumping version.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/tag-list` | List all debug-pri tags grouped by service name |
-| `/tag-new` | Create a new debug-pri tag by bumping version for current user |
+| `/tag-list` | List all tags grouped by service name |
+| `/tag-new` | Create a new tag by bumping version for current user |
 
 ## Tag Format
 
 ```
-debug-pri-<name>-v<semver>
+<name>-v<semver>
 ```
 
 - `<name>` is derived from `git config user.name` by taking the first character of each name segment (e.g. `luoyi` → `ly`, `张三` → `zs`)
@@ -27,7 +27,7 @@ debug-pri-<name>-v<semver>
 /tag-list backend
 ```
 
-Lists all `debug-pri-*` tags grouped by service name, showing version and commit date.
+Lists all tags grouped by service name, showing version and commit date.
 
 ### Create new tag
 
@@ -44,5 +44,5 @@ Flow:
 2. Looks up existing tags for this abbreviation
 3. Delegates to `tag-pattern-analyzer` to detect pattern and compute next version
 4. Shows analysis and asks for confirmation
-5. Creates annotated tag: `debug-pri: <abbr> <version>`
+5. Creates annotated tag: `<abbr> <version>`
 6. Pushes to remote
