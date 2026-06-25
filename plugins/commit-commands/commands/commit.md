@@ -14,7 +14,7 @@ description: Create a git commit with auto-generated message
 
 Based on the above changes, create a single git commit.
 
-1. Stage relevant files (avoid `.env`, credentials, secrets)
+1. Stage **all** changed and new files shown in the git status above. Trust the project's `.gitignore` to determine what to exclude — do not apply your own judgment about which files to skip. If `.gitignore` does not exist or does not cover sensitive files (`.env`, credentials, etc.), skip those explicitly.
 2. **Delegate message generation to the `commit-message-writer` subagent**
    - The subagent reads the staged diff and returns a Conventional Commits message
    - Do NOT inline message rules here — trust the subagent's output
