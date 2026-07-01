@@ -85,8 +85,8 @@ lint_command() {
         echo -e "  ${GREEN}✅ Task section${NC}"
     fi
 
-    # 8. Check for single-message instruction
-    if ! grep -q 'MUST do all.*single message' "$file"; then
+    # 8. Check for single-message or sequential-execution instruction
+    if ! grep -qiE '(MUST do all.*single message|execute each step sequentially)' "$file"; then
         echo -e "  ${YELLOW}⚠️  Missing single-message instruction${NC}"
         ((warnings++))
     else
