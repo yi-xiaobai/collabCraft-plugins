@@ -31,6 +31,7 @@
 2. skills 让AI自主执行
 3. rule 规则
 4. hooks 
+5. 一些command好像agent都内置 似乎规定rules 或者 skills 即可
 
 
 
