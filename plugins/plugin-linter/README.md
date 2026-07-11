@@ -1,6 +1,6 @@
 # Plugin Linter
 
-Checks Claude Code plugins for compliance with official spec.
+Checks Claude Code commands, agents, and skills for repository conventions.
 
 ## Commands
 
@@ -12,8 +12,9 @@ Checks Claude Code plugins for compliance with official spec.
 ## Checks
 
 - **YAML Front Matter**: `allowed-tools` must specify exact command patterns; `description` must be present and concise
-- **Structure**: must have `## Context` and `## Your task` sections
-- **Your task**: no hardcoded scripts; describes *what* not *how*; must include a single-response instruction
+- **Commands**: context, task, tool scope, and sequential execution
+- **Agents**: reusable role, name, description, and tool scope
+- **Skills**: matching name, trigger description, language, and team-specific scope
 
 ## Reference
 

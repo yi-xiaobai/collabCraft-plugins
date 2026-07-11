@@ -1,7 +1,0 @@
-{
-  "name": "branch-commands",
-  "description": "Git branch workflow commands: create, switch, merge",
-  "author": {
-    "name": "yixiaobai"
-  }
-}

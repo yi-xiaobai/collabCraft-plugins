@@ -1,7 +1,7 @@
 #!/bin/bash
 # Plugin Linter - Check plugin files for style compliance
 # Run: ./scripts/lint-plugins.sh [file...]
-# If no files specified, checks all plugins/*/commands/*.md and plugins/*/agents/*.md
+# If no files specified, checks commands, agents, and skills in every plugin
 
 set -e
 
@@ -137,6 +137,34 @@ lint_agent() {
     return $file_errors
 }
 
+lint_skill() {
+    local file="$1"
+    local file_errors=0
+
+    echo -e "\n🧠 Checking skill: $file"
+
+    lint_common "$file" || file_errors=$?
+
+    if ! grep -q '^name:' "$file"; then
+        echo -e "  ${RED}❌ Missing 'name:' field in frontmatter${NC}"
+        ((file_errors++))
+    else
+        echo -e "  ${GREEN}✅ Name field present${NC}"
+    fi
+
+    local skill_dir
+    skill_dir=$(basename "$(dirname "$file")")
+    local name_field
+    name_field=$(grep '^name:' "$file" | head -1 | sed 's/^name:[[:space:]]*//' | tr -d '"' | tr -d "'")
+    if [ -n "$name_field" ] && [ "$skill_dir" != "$name_field" ]; then
+        echo -e "  ${YELLOW}⚠️  Skill directory '$skill_dir' doesn't match name field '$name_field'${NC}"
+        ((warnings++))
+    fi
+
+    errors=$((errors + file_errors))
+    return $file_errors
+}
+
 # Main
 echo "📋 Plugin Lint Report"
 echo "===================="
@@ -144,7 +172,7 @@ echo "===================="
 if [ $# -gt 0 ]; then
     files=("$@")
 else
-    files=($(find plugins \( -path "*/commands/*.md" -o -path "*/agents/*.md" \) 2>/dev/null))
+    files=($(find plugins \( -path "*/commands/*.md" -o -path "*/agents/*.md" -o -path "*/skills/*/SKILL.md" \) 2>/dev/null))
 fi
 
 if [ ${#files[@]} -eq 0 ]; then
@@ -157,6 +185,8 @@ for file in "${files[@]}"; do
         lint_command "$file" || true
     elif [[ "$file" == *"/agents/"*".md" ]]; then
         lint_agent "$file" || true
+    elif [[ "$file" == *"/skills/"*"/SKILL.md" ]]; then
+        lint_skill "$file" || true
     fi
 done
 

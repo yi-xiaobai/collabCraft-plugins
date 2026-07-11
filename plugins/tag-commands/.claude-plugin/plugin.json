@@ -1,7 +1,0 @@
-{
-  "name": "tag-commands",
-  "description": "Git tag workflow: list tags grouped by service, analyze patterns, create new tags",
-  "author": {
-    "name": "yixiaobai"
-  }
-}

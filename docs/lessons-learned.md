@@ -31,7 +31,9 @@
 2. skills 让AI自主执行
 3. rule 规则
 4. hooks 
-5. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
+5. 通用能力交给 LLM，团队知识和软性判断交给 Skills，强制约束交给 Hooks/CI
+6. Commands 只保留多步骤、跨系统或需要明确入口的完整工作流
+7. 单个 Command 专用的逻辑不拆 Agent，只有跨工作流复用时才值得委派
 
 
 

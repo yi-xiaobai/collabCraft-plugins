@@ -6,14 +6,9 @@
   },
   "plugins": [
     {
-      "name": "branch-commands",
-      "source": "./plugins/branch-commands",
-      "description": "Git 分支工作流：create, switch, delete"
-    },
-    {
-      "name": "commit-commands",
-      "source": "./plugins/commit-commands",
-      "description": "Git 提交工作流：commit, push, undo"
+      "name": "git-workflow",
+      "source": "./plugins/git-workflow",
+      "description": "团队 Git 规范与 GitLab MR 交付流程"
     },
     {
       "name": "mr-commands",
@@ -21,19 +16,9 @@
       "description": "GitLab MR 工作流：list, create, view, merge"
     },
     {
-      "name": "deploy-commands",
-      "source": "./plugins/deploy-commands",
-      "description": "通用构建发布工作流：build, publish, release"
-    },
-    {
       "name": "upgrade-commands",
       "source": "./plugins/upgrade-commands",
       "description": "依赖升级工作流：turtle-upgrade"
-    },
-    {
-      "name": "tag-commands",
-      "source": "./plugins/tag-commands",
-      "description": "Git 标签工作流：create, list"
     }
   ]
 }
