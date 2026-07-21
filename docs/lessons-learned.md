@@ -32,6 +32,7 @@
 3. rule 规则
 4. hooks 
 5. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
+6. 一些llm有的没必要过度设计
 
 
 
