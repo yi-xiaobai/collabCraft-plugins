@@ -29,11 +29,13 @@
 
 1. agents 多个command之间可以复用的 单个command的没必要agents
 2. skills 让AI自主执行
-3. rule 规则
+3. rule 规则 git适合根据不同的项目写在rules中 但可以考虑动态的rules？ 可以作为一个skills 
+    每个项目不同的提交结构和方式 抽离出来
 4. hooks 
 5. 通用能力交给 LLM，团队知识和软性判断交给 Skills，强制约束交给 Hooks/CI
 6. Commands 只保留多步骤、跨系统或需要明确入口的完整工作流
 7. 单个 Command 专用的逻辑不拆 Agent，只有跨工作流复用时才值得委派
+
 
 
 
