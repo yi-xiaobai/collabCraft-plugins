@@ -12,7 +12,8 @@
 6. 告诉 LLM 做什么 无需太细致
 7. 语言
 8. git相关的命令不需要重复封装 告知一些具体规则即可
-9. 尽量用终端 ghostty 但是需要具体规则
+9. 尽量用终端 ghostty
+10. 自己领域的skills
 
 ---
 
@@ -35,6 +36,7 @@
 5. 通用能力交给 LLM，团队知识和软性判断交给 Skills，强制约束交给 Hooks/CI
 6. Commands 只保留多步骤、跨系统或需要明确入口的完整工作流
 7. 单个 Command 专用的逻辑不拆 Agent，只有跨工作流复用时才值得委派
+8. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
 
 
 
