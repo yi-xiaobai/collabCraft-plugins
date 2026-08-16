@@ -8,12 +8,13 @@ description: Lint Claude Code plugin files for official style compliance
 - Plugin directory: !`find . -name "commands" -type d | head -5`
 - Command files count: !`find . -path "*/commands/*.md" | wc -l`
 - Agent files count: !`find . -path "*/agents/*.md" | wc -l`
+- Skill files count: !`find . -path "*/skills/*/SKILL.md" | wc -l`
 
 ## Parameters
 
 `/plugin-lint [path]`
 
-Defaults: scan all `plugins/*/commands/*.md` and `plugins/*/agents/*.md` files
+Defaults: scan all command, agent, and skill files under `plugins/`
 
 ## Your task
 
@@ -64,6 +65,20 @@ Lint plugin files for compliance with official style. Apply different rule sets 
 - [ ] Must NOT use `## Context` / `## Your task` / `## Parameters` (those are command-only)
 - [ ] Should describe the agent's **role**, **input**, **output format**, and **rules**
 - [ ] Must NOT include the "single message" instruction (agents are reusable, not one-shot)
+
+## Rules for `skills/*/SKILL.md`
+
+### 1. YAML Front Matter
+- [ ] `name` is required and must match the containing skill directory
+- [ ] `description` states both the capability and when to use it
+
+### 2. Language
+- [ ] All content must be in **English**
+
+### 3. Scope
+- [ ] Contains team-specific knowledge, decisions, or safety boundaries
+- [ ] Does not duplicate general model capabilities or wrap ordinary CLI usage
+- [ ] Defines verification or completion criteria where relevant
 
 ## Output format
 
@@ -139,4 +154,17 @@ Return ONLY ...
 ## Examples
 
 ...
+```
+
+### Skill template
+
+```markdown
+---
+name: my-skill
+description: Apply team conventions when working on a specific task. Use when ...
+---
+
+# My Skill
+
+Document team-specific decisions, boundaries, and verification criteria.
 ```

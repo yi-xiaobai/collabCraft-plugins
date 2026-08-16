@@ -30,10 +30,14 @@
 
 1. agents 多个command之间可以复用的 单个command的没必要agents
 2. skills 让AI自主执行
-3. rule 规则
+3. rule 规则 git适合根据不同的项目写在rules中 但可以考虑动态的rules？ 可以作为一个skills 
+    每个项目不同的提交结构和方式 抽离出来
 4. hooks 
-5. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
-6. 一些llm有的没必要过度设计
+5. 通用能力交给 LLM，团队知识和软性判断交给 Skills，强制约束交给 Hooks/CI
+6. Commands 只保留多步骤、跨系统或需要明确入口的完整工作流
+7. 单个 Command 专用的逻辑不拆 Agent，只有跨工作流复用时才值得委派
+8. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
+
 
 
 
@@ -42,5 +46,7 @@
 1. 怎么让agent改变工作流？
 2. 团队成员之间的agent交互设计
 3. 以什么形式 skills plugins 还是纯md文件
+4. 需要什么样的步骤让agent正常运转？
+5. 业务层的agent如何运转的更好？恐怕是未来一段时间的一个高光
 
 最终：以skills形式来呈现

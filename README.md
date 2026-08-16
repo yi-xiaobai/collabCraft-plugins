@@ -1,15 +1,15 @@
 # CollabCraft Plugins
 
-A repository of team Git workflow plugins for Claude Code.
+A repository of team knowledge and deterministic workflow plugins for Claude
+Code. Native model capabilities handle routine operations; plugins supply team
+conventions and valuable multi-system workflows.
 
 ## Plugins
 
 | Plugin | Commands | Description |
 |--------|----------|-------------|
-| **branch-commands** | `/branch-create`, `/branch-switch`, `/branch-merge` | Git branch workflow |
-| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr` | Git commit workflow |
+| **git-workflow** | `/commit-push-mr` + automatic skill | Team Git conventions and GitLab delivery |
 | **mr-commands** | `/mr-beautify`, `/mr-list`, `/mr-update` | GitLab MR workflow |
-| **deploy-commands** | `/build`, `/publish`, `/release` | Build and publish workflow |
 | **upgrade-commands** | `/turtle-upgrade` | Dependency upgrade workflow |
 | **plugin-linter** | `/plugin-lint` | Plugin convention checks |
 
@@ -21,8 +21,9 @@ Each plugin follows the Claude Code plugin structure:
 plugins/<plugin-name>/
 ├── .claude-plugin/
 │   └── plugin.json
-├── commands/
-├── agents/              # optional
+├── skills/              # optional team knowledge and decision rules
+├── commands/            # optional explicit workflow entry points
+├── agents/              # optional reusable specialist context
 └── README.md
 ```
 
@@ -38,7 +39,7 @@ Add the repository marketplace and then install plugins from it:
 
 ```bash
 /plugin marketplace add ./.claude-plugin
-/plugin install branch-commands commit-commands mr-commands deploy-commands upgrade-commands plugin-linter@collabcraft-plugins
+/plugin install git-workflow mr-commands upgrade-commands@collabcraft-plugins
 ```
 
 ## Reference

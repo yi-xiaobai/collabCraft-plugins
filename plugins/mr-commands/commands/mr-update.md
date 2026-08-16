@@ -23,7 +23,8 @@ description: Update MR metadata (target branch, assignee, reviewer, labels, draf
 ### Step 1: Validate MR exists
 
 From MR info above, confirm MR exists on current branch.
-- No MR → abort with hint to run `/commit-push-mr`
+- No MR → abort and suggest installing `git-workflow` or creating the MR with
+  `glab mr create`
 
 ### Step 2: Determine what to change
 
@@ -97,7 +98,8 @@ Changes:
 
 ## Error Handling
 
-- **No MR**: suggest running `/commit-push-mr` to create one first
+- **No MR**: suggest installing `git-workflow` or creating one with
+  `glab mr create`
 - **No flags**: print usage table
 - **Invalid target branch**: list available remote branches
 - **glab failure**: surface error verbatim, do not retry

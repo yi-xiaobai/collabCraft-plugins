@@ -49,9 +49,8 @@ You MUST do all of the above in a single message.
 ## Error Handling
 
 - NEVER use `--no-verify` or `--force`
-- If pre-commit check fails on the upgrade commit (Step 3), **delegate recovery to the `pre-commit-handler` subagent**
-  - Pass the hook failure output
-  - On `RETRY`: commit again; repeat until success or `STOP`
-  - On `STOP`: report the hook failure to the user — do not attempt fixes (never bump baselines/thresholds); user resolves manually
-  - Do NOT inline recovery rules here — trust the subagent's output
+- If a pre-commit check fails, fix only clear source lint, formatting, type, or
+  test failures caused by the upgrade, then retry the commit.
+- Stop and report infrastructure, threshold, environment, or ambiguous failures.
+- Never weaken hooks, tests, baselines, or thresholds to make the commit pass.
 - Other failures (push, mr create, etc.): stop immediately and report the reason

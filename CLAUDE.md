@@ -6,20 +6,19 @@ All responses and files in English.
 
 ```
 plugins/
-  ├── branch-commands/      # Git branch workflow
-  ├── commit-commands/      # Git commit workflow
+  ├── git-workflow/         # Team Git skill + GitLab delivery command
   ├── mr-commands/          # GitLab MR workflow
-  ├── deploy-commands/      # Build and deployment workflow
   ├── upgrade-commands/     # Dependency upgrade workflow
   └── plugin-linter/        # Plugin compliance checker
 docs/                       # Design documents
 scripts/lint-plugins.sh     # Plugin lint script
 ```
 
-Each plugin: `.claude-plugin/plugin.json` + `commands/*.md` + optional `agents/*.md` + `README.md`.
+Each plugin: `.claude-plugin/plugin.json` + at least one capability directory + `README.md`.
 
-- `commands/*.md` — user-triggered slash commands
-- `agents/*.md` — reusable subagents that commands delegate to (e.g. `branch-namer`, `commit-message-writer`, `mr-summarizer`)
+- `skills/*/SKILL.md` — team knowledge and decision rules loaded when relevant
+- `commands/*.md` — explicit entry points for valuable multi-step workflows
+- `agents/*.md` — reusable specialists shared by multiple workflows
 
 Run `bash scripts/lint-plugins.sh` after commit or push — must pass.
 
@@ -29,4 +28,8 @@ Commit format: `type(scope): message`
 
 ## Design Principle
 
-When designing plugins, **never hardcode specific commands, steps, or implementations**. Express *what* functionality is desired, not *how* to achieve it. This keeps plugins flexible and reusable across different contexts.
+Use native model capabilities for general-purpose operations. Package stable team
+knowledge and judgment as skills, deterministic enforcement as scripts/hooks/CI,
+and explicit commands only for valuable multi-step or cross-system workflows.
+
+Do not create a subagent for logic used by only one command.

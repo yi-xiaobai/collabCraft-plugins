@@ -1,117 +1,81 @@
 # CollabCraft Plugins
 
-团队级 Git 工作流插件，面向 Claude Code，通过仓库内 marketplace 统一分发。
+团队级知识与工作流插件，通过仓库内 marketplace 向 Claude Code 统一分发。
 
 ## 插件列表
 
-| 插件 | 命令 | 说明 |
+| 插件 | 能力 | 说明 |
 |------|------|------|
-| **branch-commands** | `/branch-create`, `/branch-merge`, `/branch-switch` | Git 分支工作流 |
-| **commit-commands** | `/commit`, `/commit-push`, `/commit-push-mr` | Git 提交工作流 |
-| **mr-commands** | `/mr-list`, `/mr-beautify`, `/mr-update` | GitLab MR 工作流 |
-| **deploy-commands** | `/build`, `/publish`, `/release` | 构建与发布工作流 |
-| **upgrade-commands** | `/turtle-upgrade` | 依赖升级工作流 |
-| **plugin-linter** | `/plugin-lint` | 插件合规检查 |
+| **git-workflow** | 自动 Skill、`/commit-push-mr` | Git 团队规范与 GitLab 交付 |
+| **mr-commands** | `/mr-list`、`/mr-beautify`、`/mr-update` | GitLab MR 管理 |
+| **upgrade-commands** | `/turtle-upgrade` | 团队依赖升级流程 |
+| **plugin-linter** | `/plugin-lint` | 插件结构检查 |
 
-> **个人效率工具**（Skills，非插件）：
-> - `/log`, `/generate-week` → work-log skill
-> - `/build` → turtle-build skill
-> - `/trending` → github-trending skill
+## 设计分层
+
+```text
+LLM 原生能力
+  通用编码、Git 操作、分析、总结
+
+Skills
+  团队知识、约定、检查清单和需要上下文的判断
+
+Commands
+  用户需要明确触发的多步骤或跨系统工作流
+
+Scripts / Hooks / CI
+  必须确定执行和强制满足的约束
+```
+
+Plugin 是团队能力的分发容器，并不等同于 slash command。一个 Plugin
+可以同时包含 Skill、Command、Agent 或确定性工具。
 
 ## 目录结构
 
-```
-plugins/
-├── branch-commands/
-│   ├── .claude-plugin/plugin.json
-│   ├── commands/
-│   │   ├── branch-create.md
-│   │   ├── branch-merge.md
-│   │   └── branch-switch.md
-│   ├── agents/
-│   │   └── branch-namer.md
-│   └── README.md
-├── commit-commands/
-│   ├── .claude-plugin/plugin.json
-│   ├── commands/
-│   │   ├── commit.md
-│   │   ├── commit-push.md
-│   │   └── commit-push-mr.md
-│   ├── agents/
-│   │   └── commit-message-writer.md
-│   └── README.md
-├── mr-commands/
-│   ├── .claude-plugin/plugin.json
-│   ├── commands/
-│   │   ├── mr-list.md
-│   │   ├── mr-beautify.md
-│   │   └── mr-update.md
-│   ├── agents/
-│   │   └── mr-summarizer.md
-│   └── README.md
-├── deploy-commands/
-│   ├── .claude-plugin/plugin.json
-│   ├── commands/
-│   │   ├── build.md
-│   │   ├── publish.md
-│   │   └── release.md
-│   └── README.md
-├── upgrade-commands/
-│   ├── .claude-plugin/plugin.json
-│   ├── commands/
-│   │   └── turtle-upgrade.md
-│   └── README.md
-└── plugin-linter/
-    ├── .claude-plugin/plugin.json
-    ├── commands/
-    │   └── plugin-lint.md
-    └── README.md
+```text
+plugins/<plugin-name>/
+├── .claude-plugin/
+│   └── plugin.json
+├── skills/                 # optional
+│   └── <skill-name>/
+│       └── SKILL.md
+├── commands/               # optional
+│   └── <command>.md
+├── agents/                 # optional
+│   └── <agent>.md
+├── scripts/                # optional
+└── README.md
 ```
 
-每个 plugin 目录约定：
+- `skills/*/SKILL.md`：仅在相关场景加载的团队知识和软性决策规则。
+- `commands/*.md`：多步骤、跨系统或需要明确入口的工作流。
+- `agents/*.md`：被多个工作流复用的专业上下文；单个 Command 专用逻辑直接内联。
+- `scripts/`、Hooks、CI：确定执行、可机械验证的动作和门禁。
 
-- `commands/*.md` — 用户主动触发的 slash 命令
-- `agents/*.md` — 可被命令委派的子代理（subagent），用于复用复杂的 AI 任务
-- `.claude-plugin/plugin.json` — Claude Code 插件清单
+## 封装判断
+
+设计一项能力前依次判断：
+
+1. LLM 能否仅凭自然语言稳定完成？能则直接使用，不增加封装。
+2. 是否反复需要团队专有知识或相同决策规则？是则使用 Skill。
+3. 是否是有独立价值的多步骤或跨系统流程？是则提供 Command 入口。
+4. 是否必须百分之百执行或阻止错误？是则使用 Script、Hook 或 CI。
+
+不要把普通 CLI 操作包装成 Command，也不要为只使用一次的推理创建 Agent。
 
 ## Marketplace
 
-仓库级 marketplace 文件位于：
+Marketplace 文件位于 `.claude-plugin/marketplace.json`，每个条目指向
+`./plugins/<plugin-name>`。
 
-```text
-.claude-plugin/marketplace.json
-```
-
-每个条目都指向 `./plugins/<plugin-name>`，可用于 Claude Code 插件发现和安装。
-
-## Manifest 最低要求
-
-每个 `plugins/<name>/.claude-plugin/plugin.json` 至少包含：
+每个 manifest 至少包含：
 
 - `name`
 - `description`
 - `author.name`
 
-## Plugin vs Skill
+修改后运行：
 
-| 类型 | 用途 | 示例 |
-|------|------|------|
-| **Plugin** | 团队共享、标准化工作流 | branch-commands, commit-commands |
-| **Skill** | 个人效率、本地配置 | work-log, turtle-build, github-trending |
-
-## 命令文件格式
-
-```markdown
----
-allowed-tools: Bash(git add:*), Bash(git commit:*)
-description: Short description
----
-
-## Context
-
-- Current status: !`git status`
-
-## Your task
-
-Instructions for Claude...
+```bash
+bash scripts/lint-plugins.sh
 ```
