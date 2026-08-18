@@ -9,8 +9,8 @@ conventions and valuable multi-system workflows.
 | Plugin | Commands | Description |
 |--------|----------|-------------|
 | **git-workflow** | `/commit-push-mr` + automatic skill | Team Git conventions and GitLab delivery |
-| **mr-commands** | `/mr-beautify`, `/mr-list`, `/mr-update` | GitLab MR workflow |
-| **upgrade-commands** | `/turtle-upgrade` | Dependency upgrade workflow |
+| **gitlab-mr** | `/mr-beautify`, `/mr-list`, `/mr-update` | GitLab MR workflow |
+| **dependency-upgrade** | `/turtle-upgrade` | Dependency upgrade workflow |
 | **plugin-linter** | `/plugin-lint` | Plugin convention checks |
 
 ## Layout
@@ -39,7 +39,7 @@ Add the repository marketplace and then install plugins from it:
 
 ```bash
 /plugin marketplace add ./.claude-plugin
-/plugin install git-workflow mr-commands upgrade-commands@collabcraft-plugins
+/plugin install git-workflow gitlab-mr dependency-upgrade@collabcraft-plugins
 ```
 
 ## Reference

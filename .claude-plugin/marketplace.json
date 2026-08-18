@@ -11,13 +11,13 @@
       "description": "团队 Git 规范与 GitLab MR 交付流程"
     },
     {
-      "name": "mr-commands",
-      "source": "./plugins/mr-commands",
+      "name": "gitlab-mr",
+      "source": "./plugins/gitlab-mr",
       "description": "GitLab MR 工作流：list, create, view, merge"
     },
     {
-      "name": "upgrade-commands",
-      "source": "./plugins/upgrade-commands",
+      "name": "dependency-upgrade",
+      "source": "./plugins/dependency-upgrade",
       "description": "依赖升级工作流：turtle-upgrade"
     }
   ]

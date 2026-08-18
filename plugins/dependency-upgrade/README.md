@@ -1,4 +1,4 @@
-# Upgrade Commands
+# Dependency Upgrade
 
 Automates dependency upgrades and creates an MR.
 

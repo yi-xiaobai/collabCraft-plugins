@@ -1,6 +1,6 @@
-# MR Commands
+# GitLab MR
 
-GitLab Merge Request workflow commands.
+GitLab Merge Request workflow.
 
 ## Commands
 

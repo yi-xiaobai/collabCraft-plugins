@@ -7,8 +7,8 @@ All responses and files in English.
 ```
 plugins/
   ├── git-workflow/         # Team Git skill + GitLab delivery command
-  ├── mr-commands/          # GitLab MR workflow
-  ├── upgrade-commands/     # Dependency upgrade workflow
+  ├── gitlab-mr/            # GitLab MR workflow
+  ├── dependency-upgrade/   # Dependency upgrade workflow
   └── plugin-linter/        # Plugin compliance checker
 docs/                       # Design documents
 scripts/lint-plugins.sh     # Plugin lint script

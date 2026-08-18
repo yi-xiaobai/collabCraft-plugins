@@ -7,8 +7,8 @@
 | 插件 | 能力 | 说明 |
 |------|------|------|
 | **git-workflow** | 自动 Skill、`/commit-push-mr` | Git 团队规范与 GitLab 交付 |
-| **mr-commands** | `/mr-list`、`/mr-beautify`、`/mr-update` | GitLab MR 管理 |
-| **upgrade-commands** | `/turtle-upgrade` | 团队依赖升级流程 |
+| **gitlab-mr** | `/mr-list`、`/mr-beautify`、`/mr-update` | GitLab MR 管理 |
+| **dependency-upgrade** | `/turtle-upgrade` | 团队依赖升级流程 |
 | **plugin-linter** | `/plugin-lint` | 插件结构检查 |
 
 ## 设计分层
