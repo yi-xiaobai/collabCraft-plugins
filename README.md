@@ -12,6 +12,7 @@ conventions and valuable multi-system workflows.
 | **gitlab-mr** | `/mr-beautify`, `/mr-list`, `/mr-update` | GitLab MR workflow |
 | **dependency-upgrade** | `/turtle-upgrade` | Dependency upgrade workflow |
 | **plugin-linter** | `/plugin-lint` | Plugin convention checks |
+| **weekly-report** | `/weekly-report` + automatic skill | Weekly work summaries from Git commits |
 
 ## Layout
 
@@ -39,7 +40,7 @@ Add the repository marketplace and then install plugins from it:
 
 ```bash
 /plugin marketplace add ./.claude-plugin
-/plugin install git-workflow gitlab-mr dependency-upgrade@collabcraft-plugins
+/plugin install git-workflow gitlab-mr dependency-upgrade weekly-report@collabcraft-plugins
 ```
 
 ## Reference

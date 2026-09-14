@@ -19,6 +19,11 @@
       "name": "dependency-upgrade",
       "source": "./plugins/dependency-upgrade",
       "description": "依赖升级工作流：turtle-upgrade"
+    },
+    {
+      "name": "weekly-report",
+      "source": "./plugins/weekly-report",
+      "description": "Generate weekly work summaries from Git commits"
     }
   ]
 }

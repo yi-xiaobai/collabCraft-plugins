@@ -10,6 +10,7 @@
 | **gitlab-mr** | `/mr-list`、`/mr-beautify`、`/mr-update` | GitLab MR 管理 |
 | **dependency-upgrade** | `/turtle-upgrade` | 团队依赖升级流程 |
 | **plugin-linter** | `/plugin-lint` | 插件结构检查 |
+| **weekly-report** | `/weekly-report`、自动 Skill | 基于 Git commit 生成周工作总结 |
 
 ## 设计分层
 
