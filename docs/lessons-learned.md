@@ -37,6 +37,7 @@
 6. Commands 只保留多步骤、跨系统或需要明确入口的完整工作流
 7. 单个 Command 专用的逻辑不拆 Agent，只有跨工作流复用时才值得委派
 8. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
+9. ai的垂直应用怎么做？
 
 
 
