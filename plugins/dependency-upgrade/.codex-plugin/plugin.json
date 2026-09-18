@@ -1,0 +1,23 @@
+{
+  "name": "dependency-upgrade",
+  "version": "0.1.0",
+  "description": "Upgrade team dependencies and deliver the change through GitLab",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "homepage": "https://github.com/yi-xiaobai/collabCraft-plugins/tree/master/plugins/dependency-upgrade",
+  "repository": "https://github.com/yi-xiaobai/collabCraft-plugins",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Dependency Upgrade",
+    "shortDescription": "Upgrade team packages with safe Git delivery",
+    "longDescription": "Upgrades approved team dependencies, verifies the result, and delivers the change through a versioned branch and GitLab merge request.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "Upgrade @master/turtle to the latest version.",
+      "Upgrade @master/turtle from the master branch."
+    ]
+  }
+}

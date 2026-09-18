@@ -1,11 +1,11 @@
 # Git Workflow
 
-Team-specific Git conventions for Claude Code.
+Team-specific Git conventions for Claude Code and Codex.
 
-The `git-workflow` skill is applied automatically when Claude creates branches,
-commits changes, pushes work, handles pre-commit failures, or prepares GitLab
-merge requests. Ordinary Git operations use Claude's native capabilities rather
-than dedicated command wrappers.
+The `git-workflow` skill is applied automatically when the coding agent creates
+branches, commits changes, pushes work, handles pre-commit failures, or prepares
+GitLab merge requests. Ordinary Git operations use native model capabilities
+rather than dedicated command wrappers.
 
 ## Team conventions
 

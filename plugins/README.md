@@ -1,6 +1,7 @@
 # CollabCraft Plugins
 
-团队级知识与工作流插件，通过仓库内 marketplace 向 Claude Code 统一分发。
+团队级知识与工作流插件，通过仓库内 Marketplace 向 Claude Code 与 Codex
+统一分发。
 
 ## 插件列表
 
@@ -37,6 +38,8 @@ Plugin 是团队能力的分发容器，并不等同于 slash command。一个 P
 plugins/<plugin-name>/
 ├── .claude-plugin/
 │   └── plugin.json
+├── .codex-plugin/
+│   └── plugin.json
 ├── skills/                 # optional
 │   └── <skill-name>/
 │       └── SKILL.md
@@ -66,10 +69,11 @@ plugins/<plugin-name>/
 
 ## Marketplace
 
-Marketplace 文件位于 `.claude-plugin/marketplace.json`，每个条目指向
+Claude Marketplace 位于 `.claude-plugin/marketplace.json`，Codex Marketplace
+位于 `.agents/plugins/marketplace.json`。两者的插件条目都指向
 `./plugins/<plugin-name>`。
 
-每个 manifest 至少包含：
+每个 Claude manifest 至少包含：
 
 - `name`
 - `description`

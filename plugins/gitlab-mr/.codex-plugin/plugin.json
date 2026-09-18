@@ -1,0 +1,24 @@
+{
+  "name": "gitlab-mr",
+  "version": "0.1.0",
+  "description": "List, update, and improve GitLab merge requests",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "homepage": "https://github.com/yi-xiaobai/collabCraft-plugins/tree/master/plugins/gitlab-mr",
+  "repository": "https://github.com/yi-xiaobai/collabCraft-plugins",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "GitLab MR",
+    "shortDescription": "Manage GitLab merge request metadata",
+    "longDescription": "Lists merge requests, produces evidence-based titles and descriptions, and safely updates GitLab merge request metadata.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "List my open merge requests.",
+      "Improve the current merge request title and description.",
+      "Update the current merge request metadata."
+    ]
+  }
+}

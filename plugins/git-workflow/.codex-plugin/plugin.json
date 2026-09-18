@@ -1,0 +1,23 @@
+{
+  "name": "git-workflow",
+  "version": "0.1.0",
+  "description": "Apply CollabCraft Git conventions and GitLab delivery defaults",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "homepage": "https://github.com/yi-xiaobai/collabCraft-plugins/tree/master/plugins/git-workflow",
+  "repository": "https://github.com/yi-xiaobai/collabCraft-plugins",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Git Workflow",
+    "shortDescription": "Apply team Git and delivery conventions",
+    "longDescription": "Adds team branch naming, commit, pre-commit recovery, push, and GitLab merge request conventions to Codex Git workflows.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "Commit and push these changes using our team conventions.",
+      "Create a branch for this work using our naming rules."
+    ]
+  }
+}

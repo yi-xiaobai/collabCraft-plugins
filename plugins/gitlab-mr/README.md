@@ -7,10 +7,12 @@ GitLab Merge Request workflow.
 ### /mr-beautify
 
 ```bash
-/mr-beautify [target-branch]
+/mr-beautify
 ```
 
-Generates an MR title and description from git commits, then updates the remote MR. Default target: `dev`.
+Generates an MR title and description from the current MR's authoritative
+GitLab commit list, previews the result, and updates the remote MR after
+confirmation.
 
 ### /mr-update
 

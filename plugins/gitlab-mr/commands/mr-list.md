@@ -16,6 +16,8 @@ Defaults: show current user's MRs only
 
 ## Your task
 
+Apply the `gitlab-mr` skill.
+
 1. If `--all`: run `glab mr list`
 2. Otherwise: run `glab mr list --author=@me`
 3. Format output as markdown table with: MR number, title, author (--all only), branch, updated date

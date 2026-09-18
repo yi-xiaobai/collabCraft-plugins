@@ -22,6 +22,28 @@ CollabCraft 用 Plugin 分发团队知识和工作流，解决规范反复解释
 
 Plugin 是以上能力的组织和分发容器，不应与 Command 画等号。
 
+## 双运行时分发
+
+同一插件同时面向 Claude Code 和 Codex，但不维护两套业务规则：
+
+```text
+共享能力内核
+  skills/ + scripts/
+        │
+        ├── Claude Code：.claude-plugin/ + commands/
+        └── Codex：.codex-plugin/ + Skill 自动触发
+
+仓库分发
+  .claude-plugin/marketplace.json
+  .agents/plugins/marketplace.json
+```
+
+- 团队决策、安全边界和验证规则以 Skill 为事实源。
+- 确定性采集和检查以 Script 为事实源。
+- Claude Command 只提供显式入口和交互参数，不复制完整规则。
+- Codex Manifest 只提供发现、展示和能力元数据。
+- 两个平台的插件名称、版本和清单必须由 CI 检查一致。
+
 ## 什么时候创建 Skill
 
 Skill 应至少满足以下条件中的两项：

@@ -10,6 +10,8 @@ description: Generate MR title and description based on git commits, then update
 
 ## Your task
 
+Apply the `gitlab-mr` skill.
+
 Generate MR title and description based ONLY on the **actual commits in this MR** (from GitLab API, not from stale local refs), then update remote MR after user confirmation.
 
 ### Step 1: Get authoritative commit list
@@ -28,21 +30,26 @@ Generate MR title and description based ONLY on the **actual commits in this MR*
    ```
 4. If the two lists differ, **trust the glab API result** and warn the user.
 
-### Step 2: Generate content
+### Step 2: Generate and preview content
 
-**Delegate to the `mr-summarizer` subagent.** Pass it:
-- The authoritative commit list from Step 1
-- The `target_branch`
+Generate the title and description directly from the authoritative commit list:
 
-The subagent returns:
-- A Conventional Commits title
-- A bullet-list description with `≤ N` bullets (N = effective commits after revert-pair exclusion)
+- Title format: `{type}(scope): {imperative summary}`, no more than 72
+  characters, with no trailing period.
+- Choose the dominant type using this priority: `feat`, `fix`, `refactor`,
+  `perf`, `test`, `docs`, `chore`.
+- Use no more bullets than effective commits after excluding merge commits,
+  revert pairs, and pure formatting commits.
+- Group related commits and describe user-facing changes. Do not copy commit
+  messages verbatim or invent changes.
 
-Do NOT inline title/description rules here — trust the subagent's output.
+Show the authoritative commits, proposed title, and proposed description. Ask
+for confirmation before changing the remote MR, then stop.
 
-### Step 3: Update MR and report
+### Step 3: Update MR after confirmation
 
-Call `glab mr update` directly with the generated title and description, then print a summary:
+Only after the user explicitly confirms the preview, call `glab mr update` with
+the proposed title and description, then print:
 
 ```
 📋 MR commits (from GitLab API): N commits
@@ -65,5 +72,5 @@ Call `glab mr update` directly with the generated title and description, then pr
 - **No commits**: no new commits relative to target branch → abort
 - **No MR found**: suggest creating MR first
 - **glab api fails**: fall back to `git log` but warn user that result may be inaccurate
-
-You MUST do all of the above in a single message.
+- **Content changes before confirmation**: re-fetch the authoritative commit
+  list and regenerate the preview

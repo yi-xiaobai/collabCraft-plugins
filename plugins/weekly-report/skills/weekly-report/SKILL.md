@@ -39,7 +39,7 @@ repository's configured `user.email`, falling back to `user.name`. Respect
 - Use changed paths to disambiguate scope, not as content to copy into the
   report.
 - Exclude merge commits. If the result is truncated, disclose that the report
-  covers only the returned commits.
+  covers only the most recent returned commits.
 - If no commits match, state the resolved period and author filter and report
   that no matching work was found. Do not manufacture a summary.
 

@@ -176,7 +176,7 @@ def main() -> int:
 
     hashes = [line for line in run_git(repo, *rev_args).splitlines() if line]
     truncated = len(hashes) > args.max_commits
-    selected = hashes[: args.max_commits]
+    selected = hashes[-args.max_commits :]
     commits = [commit_details(repo, commit_hash) for commit_hash in selected]
 
     payload = {

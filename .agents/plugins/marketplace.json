@@ -1,0 +1,68 @@
+{
+  "name": "collabcraft-plugins",
+  "interface": {
+    "displayName": "Collabcraft Plugins"
+  },
+  "plugins": [
+    {
+      "name": "git-workflow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/git-workflow"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "dependency-upgrade",
+      "source": {
+        "source": "local",
+        "path": "./plugins/dependency-upgrade"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "gitlab-mr",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gitlab-mr"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "plugin-linter",
+      "source": {
+        "source": "local",
+        "path": "./plugins/plugin-linter"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "weekly-report",
+      "source": {
+        "source": "local",
+        "path": "./plugins/weekly-report"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

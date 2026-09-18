@@ -1,5 +1,6 @@
 {
   "name": "dependency-upgrade",
+  "version": "0.1.0",
   "description": "Commands for upgrading dependencies and creating upgrade MRs",
   "author": {
     "name": "yixiaobai"

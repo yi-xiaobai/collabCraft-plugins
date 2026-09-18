@@ -14,12 +14,15 @@ description: Upgrade @master/turtle package version
 
 `request` can be:
 - **Empty** → interactive mode: show current turtle version and ask for target version + base branch
-- **Natural language** → e.g. `/turtle-upgrade 升到最新`、`/turtle-upgrade 2.3.1 基于 master`
+- **Natural language** → e.g. `/turtle-upgrade to latest` or `/turtle-upgrade 2.3.1 from master`
 - **Explicit args** (power users): `[version] [--branch dev|master]`
 
 Defaults: `version=latest`, `branch=dev`
 
 ## Task
+
+Apply the `dependency-upgrade` skill. The command behavior below is the Claude
+Code entry point for that shared workflow.
 
 ### Step 0: Determine inputs
 
@@ -36,7 +39,8 @@ Defaults: `version=latest`, `branch=dev`
 
 ### Step 1: Execute
 
-1. Create branch `chore_upgrade_turtle_<version>` from `<branch>`
+1. Create branch `chore_upgrade-turtle_vN` from `<branch>`, where `N` is one
+   greater than the highest matching local or remote branch version
 2. Update `@master/turtle` version in package.json, run `pnpm i`
 3. Commit, push, create MR to `<branch>` with:
    - Assignee: current user (`--assignee @me`)
@@ -44,7 +48,9 @@ Defaults: `version=latest`, `branch=dev`
    - Squash commits (`--squash-before-merge`)
 4. Report MR URL
 
-You MUST do all of the above in a single message.
+When arguments are present and unambiguous, execute all steps sequentially in
+one response. Interactive mode must stop after showing the prompt and wait for
+the user's reply.
 
 ## Error Handling
 
