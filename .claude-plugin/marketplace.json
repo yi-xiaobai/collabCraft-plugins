@@ -13,7 +13,7 @@
     {
       "name": "gitlab-mr",
       "source": "./plugins/gitlab-mr",
-      "description": "GitLab MR 工作流：list, create, view, merge"
+      "description": "GitLab MR 工作流：list, beautify, update"
     },
     {
       "name": "dependency-upgrade",
@@ -24,6 +24,11 @@
       "name": "weekly-report",
       "source": "./plugins/weekly-report",
       "description": "Generate weekly work summaries from Git commits"
+    },
+    {
+      "name": "plugin-linter",
+      "source": "./plugins/plugin-linter",
+      "description": "Validate plugin structure and repository conventions"
     }
   ]
 }

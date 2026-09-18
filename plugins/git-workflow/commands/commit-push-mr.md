@@ -31,4 +31,5 @@ Apply the `git-workflow` skill and complete the delivery workflow:
 5. Report the commit and merge request URL.
 
 Never bypass checks or force-push. Handle pre-commit failures according to the
-skill. Execute each step sequentially and stop when a step fails.
+skill. Execute each step sequentially in one response and stop when a step
+fails.

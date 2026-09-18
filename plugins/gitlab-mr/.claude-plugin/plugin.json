@@ -1,6 +1,7 @@
 {
   "name": "gitlab-mr",
-  "description": "GitLab Merge Request workflow: list, create, view, merge",
+  "version": "0.1.0",
+  "description": "GitLab Merge Request workflow: list, beautify, update",
   "author": {
     "name": "yixiaobai"
   }

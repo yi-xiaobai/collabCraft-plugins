@@ -2,6 +2,10 @@
 
 CollabCraft Plugins - Team Git Workflow Plugin Collection
 
+The repository publishes both Claude Code and Codex plugin manifests. Shared
+behavior belongs in `skills/`; Claude-specific slash commands belong in
+`commands/`.
+
 All responses and files in English.
 
 ```
@@ -9,7 +13,8 @@ plugins/
   ├── git-workflow/         # Team Git skill + GitLab delivery command
   ├── gitlab-mr/            # GitLab MR workflow
   ├── dependency-upgrade/   # Dependency upgrade workflow
-  └── plugin-linter/        # Plugin compliance checker
+  ├── plugin-linter/        # Plugin compliance checker
+  └── weekly-report/        # Git-based weekly summaries
 docs/                       # Design documents
 scripts/lint-plugins.sh     # Plugin lint script
 ```

@@ -15,10 +15,12 @@ description: Update MR metadata (target branch, assignee, reviewer, labels, draf
 
 `request` can be:
 - **Empty** → enter interactive mode (show current state + menu)
-- **Natural language** → e.g. `/mr-update 改成 main 分支` or `/mr-update assign to me`
+- **Natural language** → e.g. `/mr-update target main` or `/mr-update assign to me`
 - **Explicit flags** (power users) — see [Supported fields](#supported-fields)
 
 ## Your task
+
+Apply the `gitlab-mr` skill.
 
 ### Step 1: Validate MR exists
 
@@ -48,7 +50,7 @@ What would you like to change?
   6. Milestone
 
 Reply with a number, or describe in natural language
-(e.g. "改成 main 分支，指派给我").
+(e.g. "target main and assign to me").
 ```
 
 Wait for user reply before proceeding.
@@ -73,13 +75,13 @@ Do NOT touch title or description (that's `/mr-beautify`'s job).
 
 | Field | Flag form | Natural language examples |
 |-------|-----------|---------------------------|
-| Target branch | `--target <branch>` | "改成 main"、"target to dev" |
-| Assignee | `--assignee <user>` | "指派给我"、"assign to alice" |
-| Reviewer | `--reviewer <user>` | "reviewer 设成 bob,carol" |
-| Add labels | `--label <labels>` | "加 urgent 标签" |
-| Remove labels | `--unlabel <labels>` | "去掉 wip" |
-| Draft status | `--draft` / `--ready` | "转草稿"、"mark ready" |
-| Milestone | `--milestone <name>` | "里程碑设成 v2.0" |
+| Target branch | `--target <branch>` | "target main", "target dev" |
+| Assignee | `--assignee <user>` | "assign to me", "assign to alice" |
+| Reviewer | `--reviewer <user>` | "reviewers bob and carol" |
+| Add labels | `--label <labels>` | "add urgent label" |
+| Remove labels | `--unlabel <labels>` | "remove wip label" |
+| Draft status | `--draft` / `--ready` | "mark draft", "mark ready" |
+| Milestone | `--milestone <name>` | "set milestone to v2.0" |
 
 Use `@me` to refer to the current user.
 
@@ -104,4 +106,6 @@ Changes:
 - **Invalid target branch**: list available remote branches
 - **glab failure**: surface error verbatim, do not retry
 
-You MUST do all of the above in a single message.
+When a request is present and unambiguous, execute the update and report it in
+one response. Interactive mode must stop after showing the menu and wait for the
+user's reply.

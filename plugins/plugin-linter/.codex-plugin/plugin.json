@@ -1,0 +1,23 @@
+{
+  "name": "plugin-linter",
+  "version": "0.1.0",
+  "description": "Validate plugin files and repository-level consistency",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "homepage": "https://github.com/yi-xiaobai/collabCraft-plugins/tree/master/plugins/plugin-linter",
+  "repository": "https://github.com/yi-xiaobai/collabCraft-plugins",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Plugin Linter",
+    "shortDescription": "Validate plugin structure and metadata",
+    "longDescription": "Checks Claude and Codex manifests, marketplace inventories, plugin Markdown, and README command references without modifying files.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": ["Read"],
+    "defaultPrompt": [
+      "Validate the plugins in this repository.",
+      "Check this plugin for structure and metadata problems."
+    ]
+  }
+}

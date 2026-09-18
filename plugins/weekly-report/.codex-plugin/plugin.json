@@ -5,6 +5,8 @@
   "author": {
     "name": "yixiaobai"
   },
+  "homepage": "https://github.com/yi-xiaobai/collabCraft-plugins/tree/master/plugins/weekly-report",
+  "repository": "https://github.com/yi-xiaobai/collabCraft-plugins",
   "skills": "./skills/",
   "interface": {
     "displayName": "Weekly Report",

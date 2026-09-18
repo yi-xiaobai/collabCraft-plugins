@@ -1,0 +1,24 @@
+name: validate plugins
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  validate:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Lint plugins and repository metadata
+        run: python3 plugins/plugin-linter/scripts/lint_plugins.py --root .
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate workflow evaluation cases
+        run: python3 scripts/validate_evals.py
