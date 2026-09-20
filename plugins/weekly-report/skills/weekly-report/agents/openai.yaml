@@ -1,4 +1,0 @@
-interface:
-  display_name: "Weekly Report"
-  short_description: "Summarize Git commits into a weekly work report"
-  default_prompt: "Summarize my work from last week in this Git repository."

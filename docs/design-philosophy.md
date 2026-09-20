@@ -94,6 +94,10 @@ LLM 负责选择工具、组织流程、解释结果和处理非确定性判断�
 
 ## 当前选择
 
-Git 分支、commit 和 push 使用模型原生能力。`git-workflow` Skill 只提供团队
-分支命名、Conventional Commits、安全边界和 GitLab 默认值；
-`/commit-push-mr` 作为跨 Git 与 GitLab 的完整交付入口保留。
+仓库只发布一个位于 `skills/git-workflow/SKILL.md` 的 Skill，不再按 Git、
+GitLab、命令或平台拆分 Plugin。分支、commit、同步、push、GitHub PR、GitLab
+MR、CI、merge、tag 与 release 的判断规则都以该文件为唯一事实源；通用操作
+仍由模型原生能力执行，状态采集、测试和发布门禁由确定性脚本执行。
+
+规则演进遵循“真实失败证据 → 重复摩擦 → 规则与例外 → 场景评测 → 发布门禁”。
+未通过阻断项检查或相对 baseline 没有收益时，不发布新规则。

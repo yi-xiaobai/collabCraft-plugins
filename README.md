@@ -1,48 +1,44 @@
-# CollabCraft Plugins
+# Git Workflow Skill
 
-A repository of team knowledge and deterministic workflow plugins for Claude
-Code. Native model capabilities handle routine operations; plugins supply team
-conventions and valuable multi-system workflows.
+A Codex-first repository containing one self-contained Skill for the complete
+Git lifecycle. The Skill carries team constraints, conflict precedence,
+exceptions, failure recovery, provider behavior, and publication criteria;
+native model capabilities perform the Git mechanics.
 
-## Plugins
-
-| Plugin | Commands | Description |
-|--------|----------|-------------|
-| **git-workflow** | `/commit-push-mr` + automatic skill | Team Git conventions and GitLab delivery |
-| **gitlab-mr** | `/mr-beautify`, `/mr-list`, `/mr-update` | GitLab MR workflow |
-| **dependency-upgrade** | `/turtle-upgrade` | Dependency upgrade workflow |
-| **plugin-linter** | `/plugin-lint` | Plugin convention checks |
-| **weekly-report** | `/weekly-report` + automatic skill | Weekly work summaries from Git commits |
-
-## Layout
-
-Each plugin follows the Claude Code plugin structure:
+## Structure
 
 ```text
-plugins/<plugin-name>/
-├── .claude-plugin/
-│   └── plugin.json
-├── skills/              # optional team knowledge and decision rules
-├── commands/            # optional explicit workflow entry points
-├── agents/              # optional reusable specialist context
-└── README.md
+.
+├── .agents/plugins/marketplace.json
+├── .codex-plugin/plugin.json
+├── .claude-plugin/plugin.json
+├── .github/workflows/validate.yml
+├── evals/
+├── scripts/
+├── skills/git-workflow/SKILL.md
+└── tests/
 ```
 
-The repository marketplace file is:
+There are no nested plugin packages, slash commands, or specialist agents. GitHub
+and GitLab behavior lives in the same Skill so Codex has one source of truth.
 
-```text
-.claude-plugin/marketplace.json
-```
-
-## Installation
-
-Add the repository marketplace and then install plugins from it:
+## Install in Codex
 
 ```bash
-/plugin marketplace add ./.claude-plugin
-/plugin install git-workflow gitlab-mr dependency-upgrade weekly-report@collabcraft-plugins
+codex plugin marketplace add ./.agents/plugins
+codex plugin add git-workflow@collabcraft-plugins
 ```
 
-## Reference
+Start a new Codex thread after installation so the Skill is discovered.
 
-- Plugin inventory: [`plugins/README.md`](./plugins/README.md)
+## Validate
+
+```bash
+python3 scripts/git_context.py
+python3 scripts/release_gate.py
+```
+
+The release gate verifies the single-Skill structure, Codex distribution,
+failure-driven scenario catalog, and automated tests. Passing deterministic
+checks is necessary but not sufficient: model scenarios must also beat baseline
+without a blocking safety finding before publication.

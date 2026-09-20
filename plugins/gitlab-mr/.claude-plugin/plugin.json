@@ -1,7 +1,0 @@
-{
-  "name": "gitlab-mr",
-  "description": "GitLab Merge Request workflow: list, create, view, merge",
-  "author": {
-    "name": "yixiaobai"
-  }
-}

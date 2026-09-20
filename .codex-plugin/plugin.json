@@ -1,0 +1,24 @@
+{
+  "name": "git-workflow",
+  "version": "0.2.0",
+  "description": "Codex-first rules for safe, end-to-end Git delivery",
+  "author": {
+    "name": "yixiaobai"
+  },
+  "homepage": "https://github.com/yi-xiaobai/collabCraft-plugins",
+  "repository": "https://github.com/yi-xiaobai/collabCraft-plugins",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Git Workflow",
+    "shortDescription": "Automate Git delivery with team safety rules",
+    "longDescription": "One self-contained Skill for branch, commit, checks, synchronization, push, pull or merge request, CI, merge, tag, and release decisions.",
+    "developerName": "yixiaobai",
+    "category": "Developer Tools",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "Deliver these changes through a reviewed pull or merge request.",
+      "Create a safe branch and commit the current task.",
+      "Diagnose this failed Git workflow and continue safely."
+    ]
+  }
+}

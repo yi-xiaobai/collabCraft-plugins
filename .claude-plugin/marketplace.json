@@ -1,29 +1,14 @@
 {
   "name": "collabcraft-plugins",
-  "description": "CollabCraft Plugins — collaborative workflow plugins for Claude Code",
+  "description": "A single shared Git workflow skill, designed for Codex",
   "owner": {
     "name": "yixiaobai"
   },
   "plugins": [
     {
       "name": "git-workflow",
-      "source": "./plugins/git-workflow",
-      "description": "团队 Git 规范与 GitLab MR 交付流程"
-    },
-    {
-      "name": "gitlab-mr",
-      "source": "./plugins/gitlab-mr",
-      "description": "GitLab MR 工作流：list, create, view, merge"
-    },
-    {
-      "name": "dependency-upgrade",
-      "source": "./plugins/dependency-upgrade",
-      "description": "依赖升级工作流：turtle-upgrade"
-    },
-    {
-      "name": "weekly-report",
-      "source": "./plugins/weekly-report",
-      "description": "Generate weekly work summaries from Git commits"
+      "source": "../",
+      "description": "End-to-end Git constraints, exceptions, recovery, and delivery rules"
     }
   ]
 }
