@@ -78,7 +78,8 @@ in commands, agents, or provider-specific skills.
   trust the API and disclose the difference. If the API fails, label any local
   fallback as potentially incomplete.
 - Build title and body only from authoritative commits and the actual diff.
-  State purpose, material changes, and verification without inventing impact.
+  Write GitLab MR titles in English. State purpose, material changes, and
+  verification without inventing impact.
 - A request to draft or improve title/body produces a preview. A request to
   create, apply, or update the PR/MR authorizes that remote mutation; verify the
   returned artifact and URL. Re-fetch if state changes before execution.
