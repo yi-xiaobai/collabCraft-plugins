@@ -83,8 +83,11 @@ in commands, agents, or provider-specific skills.
   create, apply, or update the PR/MR authorizes that remote mutation; verify the
   returned artifact and URL. Re-fetch if state changes before execution.
 - Default to a normal PR/MR, current-user assignment, squash, and source-branch
-  removal when supported. Use the resolved target; `dev` is only the fallback
-  described above. Do not merge as part of PR/MR creation.
+  removal when supported. For GitLab, pass
+  `--squash-before-merge=true --remove-source-branch=true` explicitly to
+  `glab mr create`; do not rely on the project's defaults. Use the resolved
+  target; `dev` is only the fallback described above. Do not merge as part of
+  PR/MR creation.
 
 ## CI, merge, tag, and release
 
