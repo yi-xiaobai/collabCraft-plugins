@@ -35,19 +35,18 @@
 4. hooks 
 5. 通用能力交给 LLM，团队知识和软性判断交给 Skills，强制约束交给 Hooks/CI
 6. Commands 只保留多步骤、跨系统或需要明确入口的完整工作流
-7. 单个 Command 专用的逻辑不拆 Agent，只有跨工作流复用时才值得委派
-8. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
-9. ai的垂直应用怎么做？
+7. 一些command好像agent都内置 似乎规定rules 或者 skills 即可 对 llm基本完成大部分 用skills或者rules来定义团队相关的规范
+8. ai的垂直应用怎么做？
     获取数据?--> 摘要数据?--> 训练数据? --> 模型训练? --> 应用?
     价值怎么定义？解决了客户什么问题？例如标注平台
-10. 收集真实失败案例
+9. 收集真实失败案例
     → 找到重复认知或流程摩擦
     → 提炼为 Skill 规则
     → 写明冲突和例外
     → 用场景评测验证
     → 再决定是否发布
 
-11. Git 工作流只维护一个 `skills/git-workflow/SKILL.md`，不要按 branch、
+10. Git 工作流只维护一个 `skills/git-workflow/SKILL.md`，不要按 branch、
     commit、GitHub、GitLab 再拆 Plugin 或 Command；平台差异作为同一规则的
     条件分支，确定性检查放到 scripts/CI。
 
